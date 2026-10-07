@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Пионерская дружина имени В.Е. Лобанка — ГУО «Средняя школа №212 г. Минска». Новости, инициативы и команда." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Пионерская дружина имени В.Е. Лобанка | СШ №212 Минск" />
+    <meta property="og:description" content="Команда добрых дел. Объединяем октябрят и пионеров в команду лидеров." />
+    <meta property="og:image" content="https://brpo-212.vercel.app/logo.jpg" />
+    <meta property="og:url" content="https://brpo-212.vercel.app/" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Пионерская дружина имени В.Е. Лобанка | СШ №212 Минск" />
+    <meta name="twitter:description" content="Команда добрых дел. Объединяем октябрят и пионеров в команду лидеров." />
+    <meta name="twitter:image" content="https://brpo-212.vercel.app/logo.jpg" />
     <title>Пионерская дружина имени В.Е. Лобанка — ГУО «Средняя школа №212 г. Минска»</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -100,12 +110,65 @@
         font-size: .75rem;
         transform: translateX(-50%);
       }
+      .share-row { align-items: center; }
+      .share-button {
+        display: inline-flex;
+        align-items: center;
+        gap: .35rem;
+        border-radius: 999px;
+        color: #71717a;
+        transition: color .2s ease, background .2s ease;
+      }
+      .share-button:hover { background: #f4f4f5; color: #18181b; }
+      .share-button[data-state="busy"] { opacity: .65; pointer-events: none; }
+      .toast {
+        position: fixed;
+        right: max(1rem, env(safe-area-inset-right));
+        bottom: max(1rem, env(safe-area-inset-bottom));
+        z-index: 120;
+        max-width: min(90vw, 26rem);
+        transform: translateY(1rem);
+        border-radius: 999px;
+        background: #18181b;
+        padding: .8rem 1.1rem;
+        color: white;
+        font-size: .875rem;
+        box-shadow: 0 16px 40px rgb(24 24 27 / .24);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .2s ease, transform .2s ease;
+      }
+      .toast.is-visible { transform: translateY(0); opacity: 1; }
+      .join-step, .symbol-card { min-width: 0; }
+      .symbol-visual {
+        aspect-ratio: 4 / 3;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        border-radius: 1.25rem;
+        background: linear-gradient(135deg, #fff1f2, #f4f4f5);
+        color: #be4653;
+      }
+      .symbol-card { transition: transform .2s ease, box-shadow .2s ease; }
+      .symbol-card:hover, .symbol-card:focus-within { transform: translateY(-3px); box-shadow: 0 16px 30px -20px rgb(24 24 27 / .35); }
+      .symbol-visual svg { width: 52%; height: 52%; }
+      .media-frame { aspect-ratio: 16 / 9; }
+      .hero-logo { aspect-ratio: 1; height: auto; }
+      html { scrollbar-gutter: stable; }
+      .gallery-photo { border: 0; padding: 0; background: transparent; }
+      .gallery-photo:focus-visible { outline-offset: -4px; }
+      .share-button { min-height: 44px; }
+      .lightbox__image { width: auto; height: auto; max-height: min(72dvh, 60rem); max-width: min(80vw, 90rem); }
+      .lightbox__caption { max-height: 15dvh; overflow-y: auto; }
+      #panel-news header > div { max-width: 100%; }
+      #contact dd { overflow-wrap: anywhere; }
       @media (max-width: 640px) {
         .lightbox { padding: .75rem; }
-        .lightbox__image { max-width: 88vw; max-height: 76vh; border-radius: .75rem; }
+        .lightbox__image { max-width: 88vw; max-height: 65dvh; border-radius: .75rem; }
         .lightbox__nav { width: 2.5rem; height: 2.5rem; }
         .lightbox__nav--prev { left: .5rem; }
         .lightbox__nav--next { right: .5rem; }
+        .toast { right: 1rem; left: 1rem; max-width: none; text-align: center; }
       }
       @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -132,13 +195,13 @@
           <h1 id="hero-title" class="text-4xl font-extrabold leading-[1.06] tracking-[-.05em] sm:text-5xl xl:text-6xl">Пионерская дружина имени В.Е. Лобанка</h1>
           <p class="mt-6 text-base leading-relaxed text-zinc-600 sm:text-lg">ГУО «Средняя школа №212 г. Минска» — объединяем октябрят и пионеров в команду лидеров!</p>
           <div class="mt-8 flex flex-wrap items-center gap-4">
-            <a href="#sections" class="inline-flex items-center gap-3 rounded-full bg-zinc-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-zinc-700">Узнать о дружине <span aria-hidden="true">↓</span></a>
+            <a href="#join" class="inline-flex items-center gap-3 rounded-full bg-zinc-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-zinc-700">Как вступить <span aria-hidden="true">↓</span></a>
             <p class="text-xs leading-relaxed text-zinc-500">Дружим. Помогаем.<br />Создаём будущее вместе.</p>
           </div>
         </div>
         <div class="flex items-center justify-center bg-gradient-to-br from-zinc-50 to-red-50/50 p-5 sm:p-8 lg:p-9">
           <div class="w-full max-w-lg rounded-3xl border border-zinc-100 bg-white p-4 shadow-soft sm:p-5">
-            <img src="logo.jpg" alt="Логотипы школы и БРПО" width="1024" height="1030" class="aspect-square w-full rounded-2xl object-contain" fetchpriority="high" decoding="async" />
+            <img src="logo.jpg" alt="Логотипы школы и БРПО" width="2398" height="1792" class="hero-logo w-full rounded-2xl object-contain" fetchpriority="high" decoding="async" />
           </div>
         </div>
       </section>
@@ -164,7 +227,7 @@
           <div class="mx-auto max-w-3xl">
             <div class="mb-6 flex flex-wrap items-center justify-between gap-3 px-1">
               <div><h3 class="text-xl font-bold tracking-tight">Лента добрых дел</h3><p class="mt-1 text-sm text-zinc-600">Фотографии, события и истории нашей дружины — в одном живом потоке.</p></div>
-              <span class="rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-[10px] font-bold tracking-wide text-zinc-500">3 ФОРМАТА ПОСТОВ</span>
+              
             </div>
 
             <div class="relative space-y-5 before:absolute before:bottom-8 before:left-[1.05rem] before:top-8 before:w-px before:bg-zinc-200 sm:before:left-[1.2rem]">
@@ -172,12 +235,12 @@
               <article class="relative pl-8 sm:pl-12">
                 <span class="absolute left-0 top-7 grid h-[2.15rem] w-[2.15rem] place-items-center rounded-full border-4 border-[#f7f7f6] bg-zinc-950 text-[10px] font-bold text-white shadow-soft">01</span>
                 <div class="overflow-hidden rounded-3xl border border-white bg-white shadow-soft">
-                  <header class="flex items-center justify-between gap-3 px-5 py-4 sm:px-6">
+                  <header class="flex flex-wrap items-center justify-between gap-3 px-5 py-4 sm:px-6">
                     <div class="flex min-w-0 items-center gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-red-50 text-sm font-extrabold text-red-700">212</span><div class="min-w-0"><p class="truncate text-sm font-bold">Пионерская дружина имени В.Е. Лобанка</p><p class="text-xs text-zinc-500">ГУО «Средняя школа №212 г. Минска»</p></div></div>
                     <time datetime="2026-10-05" class="shrink-0 rounded-full bg-zinc-100 px-3 py-1.5 text-[11px] font-medium text-zinc-600">5 октября 2026</time>
                   </header>
-                  <div class="aspect-video w-full overflow-hidden bg-zinc-100"><img src="photo-main.jpg" alt="Участники пионерской дружины на общем событии" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /></div>
-                  <div class="p-5 sm:p-6"><h4 class="text-lg font-bold tracking-tight">Новый день — новая идея</h4><p class="mt-2 text-sm leading-relaxed text-zinc-600">Один кадр, за которым стоит целая история: встречаемся, обсуждаем идеи и вместе превращаем их в добрые дела.</p><div class="mt-5 flex items-center gap-4 border-t border-zinc-100 pt-4 text-xs font-medium text-zinc-500"><span>♡ Поддержать</span><span>↗ Поделиться</span></div></div>
+                  <div class="media-frame aspect-video w-full overflow-hidden bg-zinc-100"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Участники пионерской дружины на общем событии" aria-haspopup="dialog"><img src="photo-main.jpg" width="960" height="1280" alt="Участники пионерской дружины на общем событии" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div>
+                  <div class="p-5 sm:p-6"><h4 class="text-lg font-bold tracking-tight">Новый день — новая идея</h4><p class="mt-2 text-sm leading-relaxed text-zinc-600">Один кадр, за которым стоит целая история: встречаемся, обсуждаем идеи и вместе превращаем их в добрые дела.</p><div class="share-row mt-5 flex flex-wrap justify-between gap-3 border-t border-zinc-100 pt-4 text-xs font-medium"><span class="rounded-full bg-zinc-100 px-3 py-1.5 text-zinc-600">Фото</span><button type="button" class="share-button px-3 py-2" data-share-title="Новый день — новая идея"><span aria-hidden="true">↗</span> Поделиться</button></div></div>
                 </div>
               </article>
 
@@ -185,9 +248,9 @@
               <article class="relative pl-8 sm:pl-12">
                 <span class="absolute left-0 top-7 grid h-[2.15rem] w-[2.15rem] place-items-center rounded-full border-4 border-[#f7f7f6] bg-red-600 text-[10px] font-bold text-white shadow-soft">02</span>
                 <div class="overflow-hidden rounded-3xl border border-white bg-white shadow-soft">
-                  <header class="flex items-center justify-between gap-3 px-5 py-4 sm:px-6"><div class="flex min-w-0 items-center gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-zinc-950 text-sm font-extrabold text-white">↗</span><div class="min-w-0"><p class="truncate text-sm font-bold">Галерея нашей команды</p><p class="text-xs text-zinc-500">Моменты, которые хочется сохранить</p></div></div><time datetime="2026-10-12" class="shrink-0 rounded-full bg-zinc-100 px-3 py-1.5 text-[11px] font-medium text-zinc-600">12 октября 2026</time></header>
-                  <div class="grid gap-1.5 bg-zinc-100 p-1.5"><div class="aspect-video overflow-hidden rounded-2xl"><img src="photo-2.jpg" alt="Главный кадр события дружины" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /></div><div class="grid grid-cols-2 gap-1.5 sm:grid-cols-4"><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-3.jpg" alt="Командная работа участников" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /></div><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-4.jpg" alt="Участники проекта дружины" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /></div><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-5.jpg" alt="Финальный момент события" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /></div><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-6.jpg" alt="Участники дружины вместе" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /></div><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-7.jpg" alt="Общее дело дружины" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /></div><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-8.jpg" alt="Творческий момент команды" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /></div><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-9.jpg" alt="Событие пионерской дружины" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /></div><div class="relative aspect-square overflow-hidden rounded-xl"><img src="photo-main.jpg" alt="Ещё один момент из жизни дружины" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /><span class="absolute bottom-2 right-2 rounded-full bg-zinc-950/80 px-2 py-1 text-[10px] font-bold text-white">9 фото</span></div></div></div>
-                  <div class="p-5 sm:p-6"><h4 class="text-lg font-bold tracking-tight">Смотрим на одно дело с разных сторон</h4><p class="mt-2 text-sm leading-relaxed text-zinc-600">Галерея собирает в одну историю людей, эмоции и маленькие победы. Листайте кадры — здесь каждый участник добавляет свой смысл.</p><div class="mt-5 flex items-center gap-4 border-t border-zinc-100 pt-4 text-xs font-medium text-zinc-500"><span>♡ 24 реакции</span><span>▧ 7 фото</span><span>↗ Поделиться</span></div></div>
+                  <header class="flex flex-wrap items-center justify-between gap-3 px-5 py-4 sm:px-6"><div class="flex min-w-0 items-center gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-zinc-950 text-sm font-extrabold text-white">↗</span><div class="min-w-0"><p class="truncate text-sm font-bold">Галерея нашей команды</p><p class="text-xs text-zinc-500">Моменты, которые хочется сохранить</p></div></div><time datetime="2026-10-12" class="shrink-0 rounded-full bg-zinc-100 px-3 py-1.5 text-[11px] font-medium text-zinc-600">12 октября 2026</time></header>
+                  <div class="grid gap-1.5 bg-zinc-100 p-1.5"><div class="media-frame aspect-video overflow-hidden rounded-2xl"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Главный кадр события дружины" aria-haspopup="dialog"><img src="photo-2.jpg" width="959" height="1280" alt="Главный кадр события дружины" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div><div class="grid grid-cols-2 gap-1.5 sm:grid-cols-4"><div class="aspect-square overflow-hidden rounded-xl"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Командная работа участников" aria-haspopup="dialog"><img src="photo-3.jpg" width="960" height="1280" alt="Командная работа участников" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div><div class="aspect-square overflow-hidden rounded-xl"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Участники проекта дружины" aria-haspopup="dialog"><img src="photo-4.jpg" width="960" height="1280" alt="Участники проекта дружины" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div><div class="aspect-square overflow-hidden rounded-xl"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Финальный момент события" aria-haspopup="dialog"><img src="photo-5.jpg" width="960" height="1280" alt="Финальный момент события" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div><div class="aspect-square overflow-hidden rounded-xl"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Участники дружины вместе" aria-haspopup="dialog"><img src="photo-6.jpg" width="1280" height="1280" alt="Участники дружины вместе" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div><div class="aspect-square overflow-hidden rounded-xl"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Общее дело дружины" aria-haspopup="dialog"><img src="photo-7.jpg" width="1280" height="1280" alt="Общее дело дружины" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div><div class="aspect-square overflow-hidden rounded-xl"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Творческий момент команды" aria-haspopup="dialog"><img src="photo-8.jpg" width="960" height="1280" alt="Творческий момент команды" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div><div class="aspect-square overflow-hidden rounded-xl"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Событие пионерской дружины" aria-haspopup="dialog"><img src="photo-9.jpg" width="1280" height="960" alt="Событие пионерской дружины" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div><div class="relative aspect-square overflow-hidden rounded-xl"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Ещё один момент из жизни дружины" aria-haspopup="dialog"><img src="photo-main.jpg" width="960" height="1280" alt="Ещё один момент из жизни дружины" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div></div></div>
+                  <div class="p-5 sm:p-6"><h4 class="text-lg font-bold tracking-tight">Смотрим на одно дело с разных сторон</h4><p class="mt-2 text-sm leading-relaxed text-zinc-600">Галерея собирает в одну историю людей, эмоции и маленькие победы. Листайте кадры — здесь каждый участник добавляет свой смысл.</p><div class="share-row mt-5 flex flex-wrap justify-between gap-3 border-t border-zinc-100 pt-4 text-xs font-medium"><span class="rounded-full bg-zinc-100 px-3 py-1.5 text-zinc-600">Галерея</span><button type="button" class="share-button px-3 py-2" data-share-title="Смотрим на одно дело с разных сторон"><span aria-hidden="true">↗</span> Поделиться</button></div></div>
                 </div>
               </article>
 
@@ -195,9 +258,9 @@
               <article class="relative pl-8 sm:pl-12">
                 <span class="absolute left-0 top-7 grid h-[2.15rem] w-[2.15rem] place-items-center rounded-full border-4 border-[#f7f7f6] bg-zinc-950 text-[10px] font-bold text-white shadow-soft">03</span>
                 <div class="overflow-hidden rounded-3xl border border-white bg-white shadow-soft">
-                  <header class="flex items-center justify-between gap-3 px-5 py-4 sm:px-6"><div class="flex min-w-0 items-center gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-zinc-100 text-sm font-extrabold text-zinc-950">▶</span><div class="min-w-0"><p class="truncate text-sm font-bold">Видео с места событий</p><p class="text-xs text-zinc-500">Пионерская дружина имени В.Е. Лобанка</p></div></div><time datetime="2026-10-20" class="shrink-0 rounded-full bg-zinc-100 px-3 py-1.5 text-[11px] font-medium text-zinc-600">20 октября 2026</time></header>
-                  <div class="grid gap-1.5 bg-zinc-950 p-1.5 sm:grid-cols-2"><div class="aspect-video overflow-hidden rounded-2xl bg-zinc-900"><video class="h-full w-full object-cover" controls preload="metadata" muted playsinline poster="photo-main.jpg"><source src="video-main.mp4" type="video/mp4" />Ваш браузер не поддерживает воспроизведение видео.</video></div><div class="aspect-video overflow-hidden rounded-2xl bg-zinc-900"><video class="h-full w-full object-cover" controls preload="metadata" muted playsinline poster="photo-2.jpg"><source src="video-1.mp4" type="video/mp4" />Ваш браузер не поддерживает воспроизведение видео.</video></div></div>
-                  <div class="p-5 sm:p-6"><h4 class="text-lg font-bold tracking-tight">Когда идея становится общим движением</h4><p class="mt-2 text-sm leading-relaxed text-zinc-600">Короткий ролик о том, как мы работаем в команде, поддерживаем друг друга и создаём события, которые хочется повторить.</p><div class="mt-5 flex items-center gap-4 border-t border-zinc-100 pt-4 text-xs font-medium text-zinc-500"><span>♡ Поддержать</span><span>▶ 2 видео</span><span>↗ Поделиться</span></div></div>
+                  <header class="flex flex-wrap items-center justify-between gap-3 px-5 py-4 sm:px-6"><div class="flex min-w-0 items-center gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-zinc-100 text-sm font-extrabold text-zinc-950">▶</span><div class="min-w-0"><p class="truncate text-sm font-bold">Видео с места событий</p><p class="text-xs text-zinc-500">Пионерская дружина имени В.Е. Лобанка</p></div></div><time datetime="2026-10-20" class="shrink-0 rounded-full bg-zinc-100 px-3 py-1.5 text-[11px] font-medium text-zinc-600">20 октября 2026</time></header>
+                  <div class="grid gap-1.5 bg-zinc-950 p-1.5 sm:grid-cols-2"><div class="media-frame aspect-video overflow-hidden rounded-2xl bg-zinc-900"><video class="h-full w-full object-cover" controls preload="metadata" muted playsinline poster="photo-main.jpg"><source src="video-main.mp4" type="video/mp4" />Ваш браузер не поддерживает воспроизведение видео.</video></div><div class="media-frame aspect-video overflow-hidden rounded-2xl bg-zinc-900"><video class="h-full w-full object-cover" controls preload="metadata" muted playsinline poster="photo-2.jpg"><source src="video-1.mp4" type="video/mp4" />Ваш браузер не поддерживает воспроизведение видео.</video></div></div>
+                  <div class="p-5 sm:p-6"><h4 class="text-lg font-bold tracking-tight">Когда идея становится общим движением</h4><p class="mt-2 text-sm leading-relaxed text-zinc-600">Короткий ролик о том, как мы работаем в команде, поддерживаем друг друга и создаём события, которые хочется повторить.</p><div class="share-row mt-5 flex flex-wrap justify-between gap-3 border-t border-zinc-100 pt-4 text-xs font-medium"><span class="rounded-full bg-zinc-100 px-3 py-1.5 text-zinc-600">Видео</span><button type="button" class="share-button px-3 py-2" data-share-title="Когда идея становится общим движением"><span aria-hidden="true">↗</span> Поделиться</button></div></div>
                 </div>
               </article>
             </div>
@@ -237,35 +300,49 @@
           <h3 class="mt-3 text-3xl font-extrabold tracking-[-.04em] sm:text-4xl">Знаки, за которыми стоят поступки</h3>
           <p class="mt-5 max-w-3xl leading-relaxed text-zinc-600">Символика объединяет поколения и напоминает о ценностях, которые мы разделяем. Её настоящий смысл раскрывается в дружбе, ответственности и готовности помогать — не только на торжественных встречах, но и каждый день.</p>
           <div class="mt-7 grid gap-4 md:grid-cols-3">
-            <section class="rounded-2xl border border-red-100 bg-red-50/50 p-6"><span class="text-[11px] font-bold tracking-widest text-red-700">01 / ЕДИНСТВО</span><h4 class="mt-4 text-xl font-bold">Пионерский галстук</h4><p class="mt-3 text-sm leading-relaxed text-zinc-600">Галстук — знак принадлежности к пионерской команде. Он напоминает о связи поколений, верности общему делу и ответственности за свои поступки. Надевая его, важно помнить не только о традиции, но и о готовности поддержать товарища.</p></section>
-            <section class="rounded-2xl border border-zinc-200 bg-zinc-50 p-6"><span class="text-[11px] font-bold tracking-widest text-zinc-500">02 / ПРИЧАСТНОСТЬ</span><h4 class="mt-4 text-xl font-bold">Пионерский значок</h4><p class="mt-3 text-sm leading-relaxed text-zinc-600">Значок делает нашу принадлежность к организации видимой. За этим небольшим знаком — общие ценности, добрые дела и уважение к дружине. Это напоминание: репутацию команды создаёт каждый из нас.</p></section>
-            <section class="rounded-2xl border border-zinc-200 bg-zinc-50 p-6"><span class="text-[11px] font-bold tracking-widest text-zinc-500">03 / УВАЖЕНИЕ</span><h4 class="mt-4 text-xl font-bold">Пионерский салют</h4><p class="mt-3 text-sm leading-relaxed text-zinc-600">Салют — традиционный жест приветствия и уважения. Поднятая над головой ладонь напоминает, что общие интересы важны наряду с личными. Это знак готовности действовать вместе и бережно относиться к пионерским традициям.</p></section>
+            <section class="symbol-card rounded-2xl border border-red-100 bg-red-50/50 p-6"><figure class="symbol-visual mb-5"><svg viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="Схематичная иллюстрация: Пионерский галстук"><path d="M28 24h104L94 84l-14 50-14-50Z" fill="currentColor"/><path d="m66 84 14-16 14 16-14 12Z" fill="#9f1239"/></svg></figure><span class="text-[11px] font-bold tracking-widest text-red-700">01 / ЕДИНСТВО</span><h4 class="mt-4 text-xl font-bold">Пионерский галстук</h4><p class="mt-3 text-sm leading-relaxed text-zinc-600">Галстук — знак принадлежности к пионерской команде. Он напоминает о связи поколений, верности общему делу и ответственности за свои поступки. Надевая его, важно помнить не только о традиции, но и о готовности поддержать товарища.</p></section>
+            <section class="symbol-card rounded-2xl border border-zinc-200 bg-zinc-50 p-6"><figure class="symbol-visual mb-5"><svg viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="Схематичная иллюстрация: Пионерский значок"><path d="m80 18 18 37 41 6-30 29 7 41-36-19-36 19 7-41-30-29 41-6Z" fill="currentColor"/><circle cx="80" cy="80" r="23" fill="#fff"/><path d="m70 88 10-28 10 28Z" fill="currentColor"/></svg></figure><span class="text-[11px] font-bold tracking-widest text-zinc-500">02 / ПРИЧАСТНОСТЬ</span><h4 class="mt-4 text-xl font-bold">Пионерский значок</h4><p class="mt-3 text-sm leading-relaxed text-zinc-600">Значок делает нашу принадлежность к организации видимой. За этим небольшим знаком — общие ценности, добрые дела и уважение к дружине. Это напоминание: репутацию команды создаёт каждый из нас.</p></section>
+            <section class="symbol-card rounded-2xl border border-zinc-200 bg-zinc-50 p-6"><figure class="symbol-visual mb-5"><svg viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="Схематичная иллюстрация: Пионерский салют"><path d="M56 136V87L38 66q-8-10 2-16l18 13V31q0-12 10-12t10 12v30-42q0-12 10-12t10 12v43-30q0-12 10-12t10 12v39-18q0-12 10-12t10 12v41q0 28-22 42v12Z" fill="currentColor" stroke="#9f1239" stroke-width="3"/></svg></figure><span class="text-[11px] font-bold tracking-widest text-zinc-500">03 / УВАЖЕНИЕ</span><h4 class="mt-4 text-xl font-bold">Пионерский салют</h4><p class="mt-3 text-sm leading-relaxed text-zinc-600">Салют — традиционный жест приветствия и уважения. Поднятая над головой ладонь напоминает, что общие интересы важны наряду с личными. Это знак готовности действовать вместе и бережно относиться к пионерским традициям.</p></section>
           </div>
         </article>
         <noscript><p class="mt-4 rounded-2xl bg-white p-5 text-sm text-zinc-600">Для переключения разделов включите JavaScript в браузере. Контакты доступны ниже.</p></noscript>
+      </section>
+
+      <section id="join" class="mb-8 rounded-3xl border border-white bg-white p-7 shadow-float sm:p-10" aria-labelledby="join-title">
+        <p class="text-[11px] font-bold uppercase tracking-widest text-red-700">Твоё первое доброе дело начинается здесь</p>
+        <h2 id="join-title" class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Как вступить в дружину</h2>
+        <p class="mt-4 max-w-2xl text-sm leading-relaxed text-zinc-600">Школьнику или родителю не нужно разбираться во всём самостоятельно — старший вожатый поможет пройти каждый шаг.</p>
+        <ol class="mt-7 grid gap-4 md:grid-cols-3">
+          <li class="join-step rounded-2xl bg-red-50 p-6"><span class="mb-4 grid h-10 w-10 place-items-center rounded-xl bg-white font-bold text-red-700" aria-hidden="true">01</span><h3 class="text-lg font-bold">Шаг 1. Познакомься</h3><p class="mt-2 text-sm leading-relaxed text-zinc-600">Загляни в пионерскую комнату — кабинет педагога-организатора — на любой перемене. Расположение уточни у сотрудника школы.</p></li>
+          <li class="join-step rounded-2xl bg-zinc-50 p-6"><span class="mb-4 grid h-10 w-10 place-items-center rounded-xl bg-white font-bold" aria-hidden="true">02</span><h3 class="text-lg font-bold">Шаг 2. Заполни заявление</h3><p class="mt-2 text-sm leading-relaxed text-zinc-600">Возьми у вожатого короткую анкету или согласие родителей. Задай вопросы — тебе подскажут, какие документы нужны.</p></li>
+          <li class="join-step rounded-2xl bg-zinc-50 p-6"><span class="mb-4 grid h-10 w-10 place-items-center rounded-xl bg-white font-bold" aria-hidden="true">03</span><h3 class="text-lg font-bold">Шаг 3. Вливайся</h3><p class="mt-2 text-sm leading-relaxed text-zinc-600">Получи свой галстук или значок и приходи на первый сбор проектов. Вместе найдём дело, которое тебе интересно!</p></li>
+        </ol>
+        <a href="tel:+375299641133" class="mt-7 inline-flex rounded-full bg-zinc-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-zinc-700">Позвонить вожатому</a>
       </section>
 
       <footer id="contact" class="mb-4 grid overflow-hidden rounded-3xl bg-zinc-950 text-white shadow-float lg:grid-cols-[1.1fr_.9fr]">
         <div class="p-7 sm:p-10 lg:p-12">
           <span class="rounded-full bg-white/15 px-3 py-1.5 text-[10px] font-bold tracking-[.12em] text-white">ПРИСОЕДИНЯЙСЯ К КОМАНДЕ</span>
           <h2 class="mt-6 max-w-lg text-4xl font-extrabold tracking-[-.05em] sm:text-5xl">Вступить в ряды!</h2>
-          <a href="tel:+375299641133" class="mt-8 inline-flex items-center gap-3 rounded-full bg-white px-5 py-3 text-sm font-bold text-zinc-950 transition hover:bg-red-100 focus:outline-none focus:ring-4 focus:ring-red-300">Связаться с нами <span class="text-xl leading-none" aria-hidden="true">→</span></a>
+          <a href="tel:+375299641133" class="mt-8 inline-flex items-center gap-3 rounded-full bg-white px-5 py-3 text-sm font-bold text-zinc-950 transition hover:bg-red-100 focus:outline-none focus:ring-4 focus:ring-red-300">Позвонить вожатому <span class="text-xl leading-none" aria-hidden="true">→</span></a>
         </div>
         <div class="border-t border-white/10 bg-white/[.06] p-7 sm:p-10 lg:border-l lg:border-t-0 lg:p-12">
           <p class="text-xs font-bold uppercase tracking-[.16em] text-zinc-400">Контакты</p>
           <dl class="mt-6 space-y-5 text-sm leading-relaxed text-zinc-300">
             <div><dt class="mb-1 text-xs text-zinc-500">Педагог-организатор, старший вожатый</dt><dd class="font-medium text-white">Довжик Мария Сергеевна</dd></div>
             <div><dt class="mb-1 text-xs text-zinc-500">Телефон</dt><dd><a class="font-medium text-white hover:text-red-200" href="tel:+375299641133">+375 29 964-11-33</a></dd></div>
-            <div><dt class="mb-1 text-xs text-zinc-500">Адрес</dt><dd class="font-medium text-white">г. Минск, ул. Лобанка, 95</dd></div>
+            <div><dt class="mb-1 text-xs text-zinc-500">Кабинет</dt><dd class="font-medium text-white">Пионерская комната / кабинет педагога-организатора</dd><dd class="mt-1 text-zinc-400">Расположение уточните у сотрудника школы.</dd></div><div><dt class="mb-1 text-xs text-zinc-500">Адрес</dt><dd class="font-medium text-white">г. Минск, ул. Лобанка, 95</dd></div>
           </dl>
         </div>
       </footer>
     </main>
 
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
     <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption" hidden>
       <button type="button" class="lightbox__close" aria-label="Закрыть просмотр">×</button>
       <button type="button" class="lightbox__nav lightbox__nav--prev" aria-label="Предыдущая фотография">‹</button>
-      <img class="lightbox__image" alt="" decoding="async" />
+      <img class="lightbox__image" width="960" height="1280" alt="" decoding="async" />
       <button type="button" class="lightbox__nav lightbox__nav--next" aria-label="Следующая фотография">›</button>
       <p id="lightbox-counter" class="lightbox__counter" aria-live="polite"></p>
       <p id="lightbox-caption" class="lightbox__caption"></p>
@@ -303,6 +380,67 @@
         });
         activateTab(tabs[0]);
 
+        const toast = document.getElementById('toast');
+        let toastTimer;
+
+        function showToast(message) {
+          clearTimeout(toastTimer);
+          toast.textContent = message;
+          toast.classList.add('is-visible');
+          toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 2500);
+        }
+
+        async function copyPageUrl() {
+          const url = window.location.href;
+          if (navigator.clipboard && window.isSecureContext) {
+            try {
+              await navigator.clipboard.writeText(url);
+              return;
+            } catch (_) {
+              // Older browsers and restricted contexts can still support selection copying.
+            }
+          }
+          const focused = document.activeElement;
+          const field = document.createElement('textarea');
+          field.value = url;
+          field.setAttribute('readonly', '');
+          field.style.cssText = 'position:fixed;top:0;left:0;opacity:0;pointer-events:none';
+          document.body.append(field);
+          try {
+            field.select();
+            field.setSelectionRange(0, field.value.length);
+            if (!document.execCommand('copy')) throw new Error('Clipboard unavailable');
+          } finally {
+            field.remove();
+            focused?.focus({ preventScroll: true });
+          }
+        }
+
+        document.querySelectorAll('[data-share-title]').forEach((button) => {
+          button.addEventListener('click', async () => {
+            if (button.dataset.state === 'busy') return;
+            button.dataset.state = 'busy';
+            button.setAttribute('aria-busy', 'true');
+            try {
+              if (typeof navigator.share === 'function') {
+                try {
+                  await navigator.share({ title: button.dataset.shareTitle || document.title, url: window.location.href });
+                  return;
+                } catch (error) {
+                  if (error.name === 'AbortError') return;
+                }
+              }
+              await copyPageUrl();
+              showToast('Ссылка скопирована в буфер обмена!');
+            } catch (_) {
+              showToast('Не удалось скопировать ссылку. Скопируйте адрес из строки браузера.');
+            } finally {
+              delete button.dataset.state;
+              button.removeAttribute('aria-busy');
+            }
+          });
+        });
+
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = lightbox.querySelector('.lightbox__image');
         const caption = document.getElementById('lightbox-caption');
@@ -310,7 +448,11 @@
         const closeButton = lightbox.querySelector('.lightbox__close');
         const previousButton = lightbox.querySelector('.lightbox__nav--prev');
         const nextButton = lightbox.querySelector('.lightbox__nav--next');
-        const photos = [...document.querySelectorAll('.gallery-photo')];
+        const photos = [...document.querySelectorAll('.gallery-photo img')];
+        const page = document.querySelector('main');
+        const modalButtons = [...lightbox.querySelectorAll('button')];
+        let previousOverflow = '';
+        let previousInert = false;
         let activeIndex = 0;
         let lastFocusedElement = null;
 
@@ -319,33 +461,34 @@
           const photo = photos[activeIndex];
           lightboxImage.src = photo.currentSrc || photo.src;
           lightboxImage.alt = photo.alt;
+          lightboxImage.width = photo.width || Number(photo.getAttribute('width'));
+          lightboxImage.height = photo.height || Number(photo.getAttribute('height'));
+          lightboxImage.style.aspectRatio = `${photo.getAttribute('width')} / ${photo.getAttribute('height')}`;
           caption.textContent = photo.alt;
           counter.textContent = `${activeIndex + 1} из ${photos.length}`;
         }
 
         function openLightbox(photo) {
-          lastFocusedElement = photo;
+          lastFocusedElement = photo.closest('button');
+          previousOverflow = document.body.style.overflow;
+          previousInert = page.inert;
           showPhoto(photos.indexOf(photo));
           lightbox.hidden = false;
           document.body.style.overflow = 'hidden';
+          page.inert = true;
           closeButton.focus();
         }
 
         function closeLightbox() {
           lightbox.hidden = true;
           lightboxImage.removeAttribute('src');
-          document.body.style.overflow = '';
-          lastFocusedElement?.focus();
+          document.body.style.overflow = previousOverflow;
+          page.inert = previousInert;
+          lastFocusedElement?.focus({ preventScroll: true });
         }
 
         photos.forEach((photo) => {
-          photo.addEventListener('click', () => openLightbox(photo));
-          photo.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-              event.preventDefault();
-              openLightbox(photo);
-            }
-          });
+          photo.closest('button').addEventListener('click', () => openLightbox(photo));
         });
         closeButton.addEventListener('click', closeLightbox);
         previousButton.addEventListener('click', () => showPhoto(activeIndex - 1));
@@ -355,9 +498,21 @@
         });
         document.addEventListener('keydown', (event) => {
           if (lightbox.hidden) return;
-          if (event.key === 'Escape') closeLightbox();
-          if (event.key === 'ArrowLeft') showPhoto(activeIndex - 1);
-          if (event.key === 'ArrowRight') showPhoto(activeIndex + 1);
+          switch (event.key) {
+            case 'Escape': event.preventDefault(); closeLightbox(); break;
+            case 'ArrowLeft': event.preventDefault(); showPhoto(activeIndex - 1); break;
+            case 'ArrowRight': event.preventDefault(); showPhoto(activeIndex + 1); break;
+            case 'Tab': {
+              const first = modalButtons[0];
+              const last = modalButtons[modalButtons.length - 1];
+              if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault(); last.focus();
+              } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault(); first.focus();
+              }
+              break;
+            }
+          }
         });
       })();
     </script>
