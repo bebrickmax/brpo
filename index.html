@@ -41,7 +41,72 @@
       .tab-button[aria-selected="true"] .tab-number { background: #ffffff1a; color: #fff; }
       .tab-panel:not([hidden]) { animation: panel-in .25s ease-out; }
       [hidden] { display: none !important; }
-      @keyframes panel-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+      .gallery-photo {
+        cursor: zoom-in;
+        transition: transform .25s ease, filter .25s ease;
+      }
+      .gallery-photo:hover { filter: brightness(.94); transform: scale(1.015); }
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: grid;
+        place-items: center;
+        padding: 1rem;
+        background: rgb(9 9 11 / .94);
+      }
+      .lightbox[hidden] { display: none; }
+      .lightbox__image {
+        max-height: min(82vh, 60rem);
+        max-width: min(92vw, 90rem);
+        object-fit: contain;
+        border-radius: 1rem;
+        box-shadow: 0 24px 80px rgb(0 0 0 / .4);
+      }
+      .lightbox__close, .lightbox__nav {
+        position: absolute;
+        display: grid;
+        place-items: center;
+        width: 2.75rem;
+        height: 2.75rem;
+        border: 1px solid rgb(255 255 255 / .22);
+        border-radius: 999px;
+        background: rgb(24 24 27 / .8);
+        color: white;
+        font-size: 1.5rem;
+        line-height: 1;
+        transition: background .2s ease, transform .2s ease;
+      }
+      .lightbox__close:hover, .lightbox__nav:hover { background: rgb(63 63 70 / .95); transform: scale(1.05); }
+      .lightbox__close { top: 1rem; right: 1rem; }
+      .lightbox__nav { top: 50%; transform: translateY(-50%); }
+      .lightbox__nav:hover { transform: translateY(-50%) scale(1.05); }
+      .lightbox__nav--prev { left: 1rem; }
+      .lightbox__nav--next { right: 1rem; }
+      .lightbox__caption {
+        position: absolute;
+        right: 1rem;
+        bottom: 1rem;
+        left: 1rem;
+        color: rgb(244 244 245 / .9);
+        text-align: center;
+        font-size: .875rem;
+      }
+      .lightbox__counter {
+        position: absolute;
+        top: 1.25rem;
+        left: 50%;
+        color: rgb(228 228 231 / .8);
+        font-size: .75rem;
+        transform: translateX(-50%);
+      }
+      @media (max-width: 640px) {
+        .lightbox { padding: .75rem; }
+        .lightbox__image { max-width: 88vw; max-height: 76vh; border-radius: .75rem; }
+        .lightbox__nav { width: 2.5rem; height: 2.5rem; }
+        .lightbox__nav--prev { left: .5rem; }
+        .lightbox__nav--next { right: .5rem; }
+      }
       @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after { animation: none !important; transition: none !important; }
       }
@@ -111,7 +176,7 @@
                     <div class="flex min-w-0 items-center gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-red-50 text-sm font-extrabold text-red-700">212</span><div class="min-w-0"><p class="truncate text-sm font-bold">Пионерская дружина имени В.Е. Лобанка</p><p class="text-xs text-zinc-500">ГУО «Средняя школа №212 г. Минска»</p></div></div>
                     <time datetime="2026-10-05" class="shrink-0 rounded-full bg-zinc-100 px-3 py-1.5 text-[11px] font-medium text-zinc-600">5 октября 2026</time>
                   </header>
-                  <div class="aspect-video w-full overflow-hidden bg-zinc-100"><img src="photo-main.jpg" alt="Участники пионерской дружины на общем событии" class="h-full w-full object-cover" loading="lazy" decoding="async" /></div>
+                  <div class="aspect-video w-full overflow-hidden bg-zinc-100"><img src="photo-main.jpg" alt="Участники пионерской дружины на общем событии" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /></div>
                   <div class="p-5 sm:p-6"><h4 class="text-lg font-bold tracking-tight">Новый день — новая идея</h4><p class="mt-2 text-sm leading-relaxed text-zinc-600">Один кадр, за которым стоит целая история: встречаемся, обсуждаем идеи и вместе превращаем их в добрые дела.</p><div class="mt-5 flex items-center gap-4 border-t border-zinc-100 pt-4 text-xs font-medium text-zinc-500"><span>♡ Поддержать</span><span>↗ Поделиться</span></div></div>
                 </div>
               </article>
@@ -121,7 +186,7 @@
                 <span class="absolute left-0 top-7 grid h-[2.15rem] w-[2.15rem] place-items-center rounded-full border-4 border-[#f7f7f6] bg-red-600 text-[10px] font-bold text-white shadow-soft">02</span>
                 <div class="overflow-hidden rounded-3xl border border-white bg-white shadow-soft">
                   <header class="flex items-center justify-between gap-3 px-5 py-4 sm:px-6"><div class="flex min-w-0 items-center gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-zinc-950 text-sm font-extrabold text-white">↗</span><div class="min-w-0"><p class="truncate text-sm font-bold">Галерея нашей команды</p><p class="text-xs text-zinc-500">Моменты, которые хочется сохранить</p></div></div><time datetime="2026-10-12" class="shrink-0 rounded-full bg-zinc-100 px-3 py-1.5 text-[11px] font-medium text-zinc-600">12 октября 2026</time></header>
-                  <div class="grid gap-1.5 bg-zinc-100 p-1.5"><div class="aspect-video overflow-hidden rounded-2xl"><img src="photo-2.jpg" alt="Главный кадр события дружины" class="h-full w-full object-cover" loading="lazy" decoding="async" /></div><div class="grid grid-cols-2 gap-1.5 sm:grid-cols-4"><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-3.jpg" alt="Командная работа участников" class="h-full w-full object-cover" loading="lazy" decoding="async" /></div><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-4.jpg" alt="Участники проекта дружины" class="h-full w-full object-cover" loading="lazy" decoding="async" /></div><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-5.jpg" alt="Финальный момент события" class="h-full w-full object-cover" loading="lazy" decoding="async" /></div><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-6.jpg" alt="Участники дружины вместе" class="h-full w-full object-cover" loading="lazy" decoding="async" /></div><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-7.jpg" alt="Общее дело дружины" class="h-full w-full object-cover" loading="lazy" decoding="async" /></div><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-8.jpg" alt="Творческий момент команды" class="h-full w-full object-cover" loading="lazy" decoding="async" /></div><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-9.jpg" alt="Событие пионерской дружины" class="h-full w-full object-cover" loading="lazy" decoding="async" /></div><div class="relative aspect-square overflow-hidden rounded-xl"><img src="photo-main.jpg" alt="Ещё один момент из жизни дружины" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="absolute bottom-2 right-2 rounded-full bg-zinc-950/80 px-2 py-1 text-[10px] font-bold text-white">9 фото</span></div></div></div>
+                  <div class="grid gap-1.5 bg-zinc-100 p-1.5"><div class="aspect-video overflow-hidden rounded-2xl"><img src="photo-2.jpg" alt="Главный кадр события дружины" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /></div><div class="grid grid-cols-2 gap-1.5 sm:grid-cols-4"><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-3.jpg" alt="Командная работа участников" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /></div><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-4.jpg" alt="Участники проекта дружины" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /></div><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-5.jpg" alt="Финальный момент события" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /></div><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-6.jpg" alt="Участники дружины вместе" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /></div><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-7.jpg" alt="Общее дело дружины" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /></div><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-8.jpg" alt="Творческий момент команды" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /></div><div class="aspect-square overflow-hidden rounded-xl"><img src="photo-9.jpg" alt="Событие пионерской дружины" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /></div><div class="relative aspect-square overflow-hidden rounded-xl"><img src="photo-main.jpg" alt="Ещё один момент из жизни дружины" class="gallery-photo h-full w-full object-cover" loading="lazy" decoding="async" tabindex="0" role="button" /><span class="absolute bottom-2 right-2 rounded-full bg-zinc-950/80 px-2 py-1 text-[10px] font-bold text-white">9 фото</span></div></div></div>
                   <div class="p-5 sm:p-6"><h4 class="text-lg font-bold tracking-tight">Смотрим на одно дело с разных сторон</h4><p class="mt-2 text-sm leading-relaxed text-zinc-600">Галерея собирает в одну историю людей, эмоции и маленькие победы. Листайте кадры — здесь каждый участник добавляет свой смысл.</p><div class="mt-5 flex items-center gap-4 border-t border-zinc-100 pt-4 text-xs font-medium text-zinc-500"><span>♡ 24 реакции</span><span>▧ 7 фото</span><span>↗ Поделиться</span></div></div>
                 </div>
               </article>
@@ -197,6 +262,15 @@
       </footer>
     </main>
 
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption" hidden>
+      <button type="button" class="lightbox__close" aria-label="Закрыть просмотр">×</button>
+      <button type="button" class="lightbox__nav lightbox__nav--prev" aria-label="Предыдущая фотография">‹</button>
+      <img class="lightbox__image" alt="" decoding="async" />
+      <button type="button" class="lightbox__nav lightbox__nav--next" aria-label="Следующая фотография">›</button>
+      <p id="lightbox-counter" class="lightbox__counter" aria-live="polite"></p>
+      <p id="lightbox-caption" class="lightbox__caption"></p>
+    </div>
+
     <script>
       (() => {
         const tablist = document.querySelector('[role="tablist"]');
@@ -228,6 +302,63 @@
           });
         });
         activateTab(tabs[0]);
+
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = lightbox.querySelector('.lightbox__image');
+        const caption = document.getElementById('lightbox-caption');
+        const counter = document.getElementById('lightbox-counter');
+        const closeButton = lightbox.querySelector('.lightbox__close');
+        const previousButton = lightbox.querySelector('.lightbox__nav--prev');
+        const nextButton = lightbox.querySelector('.lightbox__nav--next');
+        const photos = [...document.querySelectorAll('.gallery-photo')];
+        let activeIndex = 0;
+        let lastFocusedElement = null;
+
+        function showPhoto(index) {
+          activeIndex = (index + photos.length) % photos.length;
+          const photo = photos[activeIndex];
+          lightboxImage.src = photo.currentSrc || photo.src;
+          lightboxImage.alt = photo.alt;
+          caption.textContent = photo.alt;
+          counter.textContent = `${activeIndex + 1} из ${photos.length}`;
+        }
+
+        function openLightbox(photo) {
+          lastFocusedElement = photo;
+          showPhoto(photos.indexOf(photo));
+          lightbox.hidden = false;
+          document.body.style.overflow = 'hidden';
+          closeButton.focus();
+        }
+
+        function closeLightbox() {
+          lightbox.hidden = true;
+          lightboxImage.removeAttribute('src');
+          document.body.style.overflow = '';
+          lastFocusedElement?.focus();
+        }
+
+        photos.forEach((photo) => {
+          photo.addEventListener('click', () => openLightbox(photo));
+          photo.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              openLightbox(photo);
+            }
+          });
+        });
+        closeButton.addEventListener('click', closeLightbox);
+        previousButton.addEventListener('click', () => showPhoto(activeIndex - 1));
+        nextButton.addEventListener('click', () => showPhoto(activeIndex + 1));
+        lightbox.addEventListener('click', (event) => {
+          if (event.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', (event) => {
+          if (lightbox.hidden) return;
+          if (event.key === 'Escape') closeLightbox();
+          if (event.key === 'ArrowLeft') showPhoto(activeIndex - 1);
+          if (event.key === 'ArrowRight') showPhoto(activeIndex + 1);
+        });
       })();
     </script>
   </body>
