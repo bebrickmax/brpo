@@ -153,6 +153,8 @@
       .symbol-card { transition: transform .2s ease, box-shadow .2s ease; }
       .symbol-card:hover, .symbol-card:focus-within { transform: translateY(-3px); box-shadow: 0 16px 30px -20px rgb(24 24 27 / .35); }
       .symbol-visual svg { width: 52%; height: 52%; }
+      .symbol-visual--photo { position: relative; background: #fff; }
+      .symbol-visual--photo img { position: absolute; inset: 7%; width: 86%; height: 86%; object-fit: contain; }
       .media-frame { aspect-ratio: 16 / 9; }
       .hero-logo { aspect-ratio: 1; height: auto; }
       html { scrollbar-gutter: stable; }
@@ -197,9 +199,6 @@
       }
       .social-icon:hover { border-color: #a1a1aa; color: #18181b; }
       .social-icon svg { width: 1.15rem; height: 1.15rem; }
-
-      /* Dashboard meters */
-      .meter-fill { transition: width 1.4s cubic-bezier(.16, 1, .3, 1); }
 
       /* Hall of fame */
       .team-card { transition: transform .25s ease, box-shadow .25s ease, background .25s ease; }
@@ -341,7 +340,7 @@
           <li><a href="#documents" class="rounded-full px-3 py-2 transition hover:bg-zinc-100 hover:text-zinc-950">Документы</a></li>
         </ul>
         <div class="flex shrink-0 items-center gap-2">
-          <a href="https://www.instagram.com/school212.minsk/" target="_blank" rel="noopener noreferrer" class="social-icon hidden sm:grid" aria-label="Instagram @school212.minsk (откроется в новой вкладке)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://instagram.com/school_212_minsk?vrfl=dXI2bmY0Mnl5ZGZ1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" class="social-icon hidden sm:grid" aria-label="Instagram @school_212_minsk (откроется в новой вкладке)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a>
           <a href="https://www.tiktok.com/@school212minsk" target="_blank" rel="noopener noreferrer" class="social-icon hidden sm:grid" aria-label="TikTok @school212minsk (откроется в новой вкладке)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.2 2.5c.35 2.3 1.85 3.9 4.3 4.15v3.3c-1.6.05-3.05-.45-4.3-1.3v6.6a6.25 6.25 0 1 1-6.25-6.25c.3 0 .6.02.9.07v3.42a2.9 2.9 0 1 0 2.05 2.76V2.5h3.3Z"/></svg></a>
           <a href="#contact" class="rounded-full bg-zinc-950 px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-zinc-700">Связаться <span class="hidden sm:inline" aria-hidden="true">↗</span></a>
         </div>
@@ -362,7 +361,7 @@
           <div class="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-zinc-100 pt-6">
             <p class="text-xs leading-relaxed text-zinc-500">Дружим. Помогаем.<br />Создаём будущее вместе.</p>
             <ul class="flex items-center gap-2" aria-label="Мы в соцсетях">
-              <li><a href="https://www.instagram.com/school212.minsk/" target="_blank" rel="noopener noreferrer" class="social-icon grid" aria-label="Instagram @school212.minsk (откроется в новой вкладке)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a></li>
+              <li><a href="https://instagram.com/school_212_minsk?vrfl=dXI2bmY0Mnl5ZGZ1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" class="social-icon grid" aria-label="Instagram @school_212_minsk (откроется в новой вкладке)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a></li>
               <li><a href="https://www.tiktok.com/@school212minsk" target="_blank" rel="noopener noreferrer" class="social-icon grid" aria-label="TikTok @school212minsk (откроется в новой вкладке)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.2 2.5c.35 2.3 1.85 3.9 4.3 4.15v3.3c-1.6.05-3.05-.45-4.3-1.3v6.6a6.25 6.25 0 1 1-6.25-6.25c.3 0 .6.02.9.07v3.42a2.9 2.9 0 1 0 2.05 2.76V2.5h3.3Z"/></svg></a></li>
             </ul>
           </div>
@@ -389,7 +388,7 @@
           <button id="tab-pioneers" type="button" role="tab" aria-selected="false" aria-controls="panel-pioneers" tabindex="-1" class="tab-button flex shrink-0 items-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold shadow-soft transition"><span class="tab-number grid h-7 w-7 place-items-center rounded-lg text-[10px]">03</span>Пионеры</button>
           <button id="tab-charter" type="button" role="tab" aria-selected="false" aria-controls="panel-charter" tabindex="-1" class="tab-button flex shrink-0 items-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold shadow-soft transition"><span class="tab-number grid h-7 w-7 place-items-center rounded-lg text-[10px]">04</span>Устав</button>
           <button id="tab-symbols" type="button" role="tab" aria-selected="false" aria-controls="panel-symbols" tabindex="-1" class="tab-button flex shrink-0 items-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold shadow-soft transition"><span class="tab-number grid h-7 w-7 place-items-center rounded-lg text-[10px]">05</span>Символика</button>
-          <button id="tab-projects" type="button" role="tab" aria-selected="false" aria-controls="panel-projects" tabindex="-1" class="tab-button flex shrink-0 items-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold shadow-soft transition"><span class="tab-number grid h-7 w-7 place-items-center rounded-lg text-[10px]">06</span>Наши проекты<span class="rounded-full bg-red-600 px-2 py-1 text-[9px] font-bold text-white">ЦИФРЫ</span></button>
+          <button id="tab-projects" type="button" role="tab" aria-selected="false" aria-controls="panel-projects" tabindex="-1" class="tab-button flex shrink-0 items-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold shadow-soft transition"><span class="tab-number grid h-7 w-7 place-items-center rounded-lg text-[10px]">06</span>Проекты сезона</button>
           <button id="tab-activists" type="button" role="tab" aria-selected="false" aria-controls="panel-activists" tabindex="-1" class="tab-button flex shrink-0 items-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold shadow-soft transition"><span class="tab-number grid h-7 w-7 place-items-center rounded-lg text-[10px]">07</span>Школа актива</button>
         </div>
 
@@ -400,40 +399,9 @@
               
             </div>
 
-            <div class="relative space-y-5 before:absolute before:bottom-8 before:left-[1.05rem] before:top-8 before:w-px before:bg-zinc-200 sm:before:left-[1.2rem]">
-              <!-- Template 1: standard post with a single real photo. -->
-              <article class="relative pl-8 sm:pl-12">
-                <span class="absolute left-0 top-7 grid h-[2.15rem] w-[2.15rem] place-items-center rounded-full border-4 border-[#f7f7f6] bg-zinc-950 text-[10px] font-bold text-white shadow-soft">01</span>
-                <div class="overflow-hidden rounded-3xl border border-white bg-white shadow-soft">
-                  <header class="flex flex-wrap items-center justify-between gap-3 px-5 py-4 sm:px-6">
-                    <div class="flex min-w-0 items-center gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-red-50 text-sm font-extrabold text-red-700">212</span><div class="min-w-0"><p class="truncate text-sm font-bold">Пионерская дружина имени В.Е. Лобанка</p><p class="text-xs text-zinc-500">ГУО «Средняя школа №212 г. Минска»</p></div></div>
-                    <time datetime="2026-10-05" class="shrink-0 rounded-full bg-zinc-100 px-3 py-1.5 text-[11px] font-medium text-zinc-600">5 октября 2026</time>
-                  </header>
-                  <div class="media-frame aspect-video w-full overflow-hidden bg-zinc-100"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Участники пионерской дружины на общем событии" aria-haspopup="dialog"><img src="photo-main.jpg" width="960" height="1280" alt="Участники пионерской дружины на общем событии" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div>
-                  <div class="p-5 sm:p-6"><h4 class="text-lg font-bold tracking-tight">Новый день — новая идея</h4><p class="mt-2 text-sm leading-relaxed text-zinc-600">Один кадр, за которым стоит целая история: встречаемся, обсуждаем идеи и вместе превращаем их в добрые дела.</p><div class="share-row mt-5 flex flex-wrap justify-between gap-3 border-t border-zinc-100 pt-4 text-xs font-medium"><span class="rounded-full bg-zinc-100 px-3 py-1.5 text-zinc-600">Фото</span><button type="button" class="share-button px-3 py-2" data-share-title="Новый день — новая идея"><span aria-hidden="true">↗</span> Поделиться</button></div></div>
-                </div>
-              </article>
-
-              <!-- Template 2: gallery post built from the real дружина photo set. Every image uses object-cover. -->
-              <article class="relative pl-8 sm:pl-12">
-                <span class="absolute left-0 top-7 grid h-[2.15rem] w-[2.15rem] place-items-center rounded-full border-4 border-[#f7f7f6] bg-red-600 text-[10px] font-bold text-white shadow-soft">02</span>
-                <div class="overflow-hidden rounded-3xl border border-white bg-white shadow-soft">
-                  <header class="flex flex-wrap items-center justify-between gap-3 px-5 py-4 sm:px-6"><div class="flex min-w-0 items-center gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-zinc-950 text-sm font-extrabold text-white">↗</span><div class="min-w-0"><p class="truncate text-sm font-bold">Галерея нашей команды</p><p class="text-xs text-zinc-500">Моменты, которые хочется сохранить</p></div></div><time datetime="2026-10-12" class="shrink-0 rounded-full bg-zinc-100 px-3 py-1.5 text-[11px] font-medium text-zinc-600">12 октября 2026</time></header>
-                  <div class="grid gap-1.5 bg-zinc-100 p-1.5"><div class="media-frame aspect-video overflow-hidden rounded-2xl"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Главный кадр события дружины" aria-haspopup="dialog"><img src="photo-2.jpg" width="959" height="1280" alt="Главный кадр события дружины" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div><div class="grid grid-cols-2 gap-1.5 sm:grid-cols-4"><div class="aspect-square overflow-hidden rounded-xl"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Командная работа участников" aria-haspopup="dialog"><img src="photo-3.jpg" width="960" height="1280" alt="Командная работа участников" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div><div class="aspect-square overflow-hidden rounded-xl"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Участники проекта дружины" aria-haspopup="dialog"><img src="photo-4.jpg" width="960" height="1280" alt="Участники проекта дружины" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div><div class="aspect-square overflow-hidden rounded-xl"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Финальный момент события" aria-haspopup="dialog"><img src="photo-5.jpg" width="960" height="1280" alt="Финальный момент события" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div><div class="aspect-square overflow-hidden rounded-xl"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Участники дружины вместе" aria-haspopup="dialog"><img src="photo-6.jpg" width="1280" height="1280" alt="Участники дружины вместе" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div><div class="aspect-square overflow-hidden rounded-xl"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Общее дело дружины" aria-haspopup="dialog"><img src="photo-7.jpg" width="1280" height="1280" alt="Общее дело дружины" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div><div class="aspect-square overflow-hidden rounded-xl"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Творческий момент команды" aria-haspopup="dialog"><img src="photo-8.jpg" width="960" height="1280" alt="Творческий момент команды" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div><div class="aspect-square overflow-hidden rounded-xl"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Событие пионерской дружины" aria-haspopup="dialog"><img src="photo-9.jpg" width="1280" height="960" alt="Событие пионерской дружины" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div><div class="relative aspect-square overflow-hidden rounded-xl"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: Ещё один момент из жизни дружины" aria-haspopup="dialog"><img src="photo-main.jpg" width="960" height="1280" alt="Ещё один момент из жизни дружины" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div></div></div>
-                  <div class="p-5 sm:p-6"><h4 class="text-lg font-bold tracking-tight">Смотрим на одно дело с разных сторон</h4><p class="mt-2 text-sm leading-relaxed text-zinc-600">Галерея собирает в одну историю людей, эмоции и маленькие победы. Листайте кадры — здесь каждый участник добавляет свой смысл.</p><div class="share-row mt-5 flex flex-wrap justify-between gap-3 border-t border-zinc-100 pt-4 text-xs font-medium"><span class="rounded-full bg-zinc-100 px-3 py-1.5 text-zinc-600">Галерея</span><button type="button" class="share-button px-3 py-2" data-share-title="Смотрим на одно дело с разных сторон"><span aria-hidden="true">↗</span> Поделиться</button></div></div>
-                </div>
-              </article>
-
-              <!-- Template 3: video post with both real дружина videos. -->
-              <article class="relative pl-8 sm:pl-12">
-                <span class="absolute left-0 top-7 grid h-[2.15rem] w-[2.15rem] place-items-center rounded-full border-4 border-[#f7f7f6] bg-zinc-950 text-[10px] font-bold text-white shadow-soft">03</span>
-                <div class="overflow-hidden rounded-3xl border border-white bg-white shadow-soft">
-                  <header class="flex flex-wrap items-center justify-between gap-3 px-5 py-4 sm:px-6"><div class="flex min-w-0 items-center gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-zinc-100 text-sm font-extrabold text-zinc-950">▶</span><div class="min-w-0"><p class="truncate text-sm font-bold">Видео с места событий</p><p class="text-xs text-zinc-500">Пионерская дружина имени В.Е. Лобанка</p></div></div><time datetime="2026-10-20" class="shrink-0 rounded-full bg-zinc-100 px-3 py-1.5 text-[11px] font-medium text-zinc-600">20 октября 2026</time></header>
-                  <div class="grid gap-1.5 bg-zinc-950 p-1.5 sm:grid-cols-2"><div class="media-frame aspect-video overflow-hidden rounded-2xl bg-zinc-900"><video class="h-full w-full object-cover" controls preload="metadata" muted playsinline poster="photo-main.jpg"><source src="video-main.mp4" type="video/mp4" />Ваш браузер не поддерживает воспроизведение видео.</video></div><div class="media-frame aspect-video overflow-hidden rounded-2xl bg-zinc-900"><video class="h-full w-full object-cover" controls preload="metadata" muted playsinline poster="photo-2.jpg"><source src="video-1.mp4" type="video/mp4" />Ваш браузер не поддерживает воспроизведение видео.</video></div></div>
-                  <div class="p-5 sm:p-6"><h4 class="text-lg font-bold tracking-tight">Когда идея становится общим движением</h4><p class="mt-2 text-sm leading-relaxed text-zinc-600">Короткий ролик о том, как мы работаем в команде, поддерживаем друг друга и создаём события, которые хочется повторить.</p><div class="share-row mt-5 flex flex-wrap justify-between gap-3 border-t border-zinc-100 pt-4 text-xs font-medium"><span class="rounded-full bg-zinc-100 px-3 py-1.5 text-zinc-600">Видео</span><button type="button" class="share-button px-3 py-2" data-share-title="Когда идея становится общим движением"><span aria-hidden="true">↗</span> Поделиться</button></div></div>
-                </div>
-              </article>
-            </div>
+            <!-- Посты ленты задаются в JS (массив FEED_POSTS): у каждого поста своё фото или видео, заголовок и описание. -->
+            <div class="relative space-y-5 before:absolute before:bottom-8 before:left-[1.05rem] before:top-8 before:w-px before:bg-zinc-200 sm:before:left-[1.2rem]" data-feed></div>
+            <noscript><p class="rounded-2xl bg-white p-5 text-sm text-zinc-600">Чтобы увидеть ленту добрых дел, включите JavaScript в браузере.</p></noscript>
           </div>
         </div>
         <article id="panel-octobrists" class="tab-panel mt-2 overflow-hidden rounded-3xl border border-white bg-white shadow-float" role="tabpanel" aria-labelledby="tab-octobrists" tabindex="0" hidden>
@@ -469,84 +437,16 @@
           <p class="text-[11px] font-bold uppercase tracking-widest text-red-700">Символы БРПО</p>
           <h3 class="mt-3 text-3xl font-extrabold tracking-[-.04em] sm:text-4xl">Знаки, за которыми стоят поступки</h3>
           <p class="mt-5 max-w-3xl leading-relaxed text-zinc-600">Символика объединяет поколения и напоминает о ценностях, которые мы разделяем. Её настоящий смысл раскрывается в дружбе, ответственности и готовности помогать — не только на торжественных встречах, но и каждый день.</p>
-          <div class="mt-7 grid gap-4 md:grid-cols-3">
+          <div class="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <section class="symbol-card rounded-2xl border border-zinc-200 bg-zinc-50 p-6"><figure class="symbol-visual symbol-visual--photo mb-5"><img src="img/brpo-emblem.jpg" width="565" height="1015" alt="Эмблема Белорусской республиканской пионерской организации" loading="lazy" decoding="async" /></figure><span class="text-[11px] font-bold tracking-widest text-zinc-500">00 / ОРГАНИЗАЦИЯ</span><h4 class="mt-4 text-xl font-bold">Эмблема БРПО</h4><p class="mt-3 text-sm leading-relaxed text-zinc-600">Разноцветное пламя и надпись «БРПО» — эмблема Белорусской республиканской пионерской организации. Яркие линии — это разные ребята, их таланты и идеи, которые вместе складываются в один общий огонь.</p></section>
             <section class="symbol-card rounded-2xl border border-red-100 bg-red-50/50 p-6"><figure class="symbol-visual mb-5"><svg viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="Схематичная иллюстрация: Пионерский галстук"><path d="M28 24h104L94 84l-14 50-14-50Z" fill="currentColor"/><path d="m66 84 14-16 14 16-14 12Z" fill="#9f1239"/></svg></figure><span class="text-[11px] font-bold tracking-widest text-red-700">01 / ЕДИНСТВО</span><h4 class="mt-4 text-xl font-bold">Пионерский галстук</h4><p class="mt-3 text-sm leading-relaxed text-zinc-600">Галстук — знак принадлежности к пионерской команде. Он напоминает о связи поколений, верности общему делу и ответственности за свои поступки. Надевая его, важно помнить не только о традиции, но и о готовности поддержать товарища.</p></section>
             <section class="symbol-card rounded-2xl border border-zinc-200 bg-zinc-50 p-6"><figure class="symbol-visual mb-5"><svg viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="Схематичная иллюстрация: Пионерский значок"><path d="m80 18 18 37 41 6-30 29 7 41-36-19-36 19 7-41-30-29 41-6Z" fill="currentColor"/><circle cx="80" cy="80" r="23" fill="#fff"/><path d="m70 88 10-28 10 28Z" fill="currentColor"/></svg></figure><span class="text-[11px] font-bold tracking-widest text-zinc-500">02 / ПРИЧАСТНОСТЬ</span><h4 class="mt-4 text-xl font-bold">Пионерский значок</h4><p class="mt-3 text-sm leading-relaxed text-zinc-600">Значок делает нашу принадлежность к организации видимой. За этим небольшим знаком — общие ценности, добрые дела и уважение к дружине. Это напоминание: репутацию команды создаёт каждый из нас.</p></section>
             <section class="symbol-card rounded-2xl border border-zinc-200 bg-zinc-50 p-6"><figure class="symbol-visual mb-5"><svg viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="Схематичная иллюстрация: Пионерский салют"><path d="M56 136V87L38 66q-8-10 2-16l18 13V31q0-12 10-12t10 12v30-42q0-12 10-12t10 12v43-30q0-12 10-12t10 12v39-18q0-12 10-12t10 12v41q0 28-22 42v12Z" fill="currentColor" stroke="#9f1239" stroke-width="3"/></svg></figure><span class="text-[11px] font-bold tracking-widest text-zinc-500">03 / УВАЖЕНИЕ</span><h4 class="mt-4 text-xl font-bold">Пионерский салют</h4><p class="mt-3 text-sm leading-relaxed text-zinc-600">Салют — традиционный жест приветствия и уважения. Поднятая над головой ладонь напоминает, что общие интересы важны наряду с личными. Это знак готовности действовать вместе и бережно относиться к пионерским традициям.</p></section>
           </div>
         </article>
-        <!-- ===== 06. НАШИ ПРОЕКТЫ — дашборд добрых дел =====
-             Как обновлять цифры:
-             • счётчик — число внутри <span data-count-to="N">N</span> (оба значения);
-             • прогресс-бар — aria-valuenow (текущее) и aria-valuemax (цель); проценты и «осталось» посчитаются сами. -->
+        <!-- ===== 06. ПРОЕКТЫ СЕЗОНА ===== -->
         <article id="panel-projects" class="tab-panel mt-2 rounded-3xl border border-white bg-white p-5 shadow-float sm:p-10" role="tabpanel" aria-labelledby="tab-projects" tabindex="0" hidden>
-          <div class="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p class="text-[11px] font-bold uppercase tracking-widest text-red-700">Дашборд добрых дел</p>
-              <h3 class="mt-3 text-3xl font-extrabold tracking-[-.04em] sm:text-4xl">Наши проекты в цифрах</h3>
-              <p class="mt-4 max-w-2xl leading-relaxed text-zinc-600">Каждое доброе дело оставляет след. Здесь мы считаем, сколько уже сделали вместе — и сколько осталось до цели.</p>
-            </div>
-            <p class="inline-flex items-center gap-2 rounded-full bg-zinc-100 px-3 py-1.5 text-xs font-medium text-zinc-600"><span class="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true"></span>Обновлено <time datetime="2026-10-01">1 октября 2026</time></p>
-          </div>
-
-          <div class="mt-8 grid gap-4 lg:grid-cols-[1.2fr_1fr]" data-metrics>
-            <section class="flex flex-col justify-between gap-8 rounded-3xl bg-zinc-950 p-6 text-white sm:p-8" aria-labelledby="metric-paper">
-              <div class="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <h4 id="metric-paper" class="text-sm font-medium text-zinc-300">Собрано макулатуры</h4>
-                  <p class="mt-3 text-5xl font-extrabold tracking-[-.04em] sm:text-6xl"><span data-count-to="850">850</span> <span class="text-xl font-bold text-zinc-300 sm:text-2xl">/ 1 000 кг</span></p>
-                </div>
-                <span class="rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold">Цель сезона</span>
-              </div>
-              <div>
-                <div class="h-3 overflow-hidden rounded-full bg-white/15" role="progressbar" aria-labelledby="metric-paper" aria-valuemin="0" aria-valuemax="1000" aria-valuenow="850" data-meter data-unit="кг"><span class="meter-fill block h-full rounded-full bg-red-500" data-meter-fill style="width: 85%"></span></div>
-                <p class="mt-3 text-xs text-zinc-300" data-meter-caption>85% · осталось 150 кг</p>
-              </div>
-            </section>
-
-            <ul class="grid grid-cols-2 gap-3 sm:gap-4" aria-label="Ключевые показатели">
-              <li class="rounded-2xl border border-zinc-100 bg-zinc-50 p-4 sm:p-5">
-                <p class="text-sm font-medium text-zinc-600">Проведено акций</p>
-                <p class="mt-2 text-3xl font-extrabold tracking-tight"><span data-count-to="12">12</span></p>
-                <p class="mt-3 inline-flex rounded-full bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-800"><span aria-hidden="true">↑&nbsp;</span><span class="sr-only">плюс </span>3 за сентябрь</p>
-              </li>
-              <li class="rounded-2xl border border-zinc-100 bg-zinc-50 p-4 sm:p-5">
-                <p class="text-sm font-medium text-zinc-600">Волонтёрских часов</p>
-                <p class="mt-2 text-3xl font-extrabold tracking-tight"><span data-count-to="340">340</span></p>
-                <p class="mt-3 inline-flex rounded-full bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-800"><span aria-hidden="true">↑&nbsp;</span><span class="sr-only">плюс </span>48 за сентябрь</p>
-              </li>
-              <li class="rounded-2xl border border-zinc-100 bg-zinc-50 p-4 sm:p-5">
-                <p class="text-sm font-medium text-zinc-600">Участников дружины</p>
-                <p class="mt-2 text-3xl font-extrabold tracking-tight"><span data-count-to="186">186</span></p>
-                <p class="mt-3 inline-flex rounded-full bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-800"><span aria-hidden="true">↑&nbsp;</span><span class="sr-only">плюс </span>14 новичков</p>
-              </li>
-              <li class="rounded-2xl border border-zinc-100 bg-zinc-50 p-4 sm:p-5">
-                <p class="text-sm font-medium text-zinc-600">Посажено деревьев</p>
-                <p class="mt-2 text-3xl font-extrabold tracking-tight"><span data-count-to="24">24</span></p>
-                <p class="mt-3 inline-flex rounded-full bg-zinc-200/70 px-2 py-1 text-xs font-semibold text-zinc-700">весенний сезон</p>
-              </li>
-            </ul>
-          </div>
-
-          <ul class="mt-4 grid gap-4 md:grid-cols-3" aria-label="Цели сезона" data-metrics>
-            <li class="rounded-2xl border border-zinc-200 p-5">
-              <div class="flex items-baseline justify-between gap-3"><h4 id="goal-caps" class="text-sm font-semibold">Крышечки на переработку</h4><p class="shrink-0 text-sm text-zinc-600"><span class="font-bold text-zinc-950" data-count-to="62">62</span> / 100 кг</p></div>
-              <div class="mt-4 h-2 overflow-hidden rounded-full bg-red-100" role="progressbar" aria-labelledby="goal-caps" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" data-meter data-unit="кг"><span class="meter-fill block h-full rounded-full bg-red-600" data-meter-fill style="width: 62%"></span></div>
-              <p class="mt-3 text-xs text-zinc-500" data-meter-caption>62% · осталось 38 кг</p>
-            </li>
-            <li class="rounded-2xl border border-zinc-200 p-5">
-              <div class="flex items-baseline justify-between gap-3"><h4 id="goal-shelter" class="text-sm font-semibold">Корм для приюта животных</h4><p class="shrink-0 text-sm text-zinc-600"><span class="font-bold text-zinc-950" data-count-to="34">34</span> / 50 кг</p></div>
-              <div class="mt-4 h-2 overflow-hidden rounded-full bg-red-100" role="progressbar" aria-labelledby="goal-shelter" aria-valuemin="0" aria-valuemax="50" aria-valuenow="34" data-meter data-unit="кг"><span class="meter-fill block h-full rounded-full bg-red-600" data-meter-fill style="width: 68%"></span></div>
-              <p class="mt-3 text-xs text-zinc-500" data-meter-caption>68% · осталось 16 кг</p>
-            </li>
-            <li class="rounded-2xl border border-zinc-200 p-5">
-              <div class="flex items-baseline justify-between gap-3"><h4 id="goal-cards" class="text-sm font-semibold">Открытки ветеранам</h4><p class="shrink-0 text-sm text-zinc-600"><span class="font-bold text-zinc-950" data-count-to="120">120</span> / 150 шт.</p></div>
-              <div class="mt-4 h-2 overflow-hidden rounded-full bg-red-100" role="progressbar" aria-labelledby="goal-cards" aria-valuemin="0" aria-valuemax="150" aria-valuenow="120" data-meter data-unit="шт."><span class="meter-fill block h-full rounded-full bg-red-600" data-meter-fill style="width: 80%"></span></div>
-              <p class="mt-3 text-xs text-zinc-500" data-meter-caption>80% · осталось 30 шт.</p>
-            </li>
-          </ul>
-
-          <h4 class="mt-10 text-xl font-bold tracking-tight">Проекты сезона</h4>
+          <h4 class="text-xl font-bold tracking-tight">Проекты сезона</h4>
           <ul class="mt-4 grid gap-4 md:grid-cols-3">
             <li class="symbol-card flex flex-col rounded-2xl border border-zinc-200 p-6">
               <div class="flex items-center justify-between gap-3"><span class="grid h-11 w-11 place-items-center rounded-xl bg-emerald-50 text-emerald-700" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></span><span class="rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-800">Идёт</span></div>
@@ -634,6 +534,7 @@
 
       <!-- ===== КАЛЕНДАРЬ СОБЫТИЙ =====
            Каждое событие — <li data-event ...>. Дата/время — по Минску (UTC+3), формат data-start="ГГГГ-ММ-ДДTчч:мм".
+           Для событий на несколько дней добавьте data-all-day: тогда показываются сроки «с … по …», а не время.
            Прошедшие события скрываются автоматически, «Через N дней» считается само. -->
       <section id="events" class="reveal grid scroll-mt-4 gap-8 pb-8 sm:pb-12 lg:grid-cols-[.75fr_1.25fr]" aria-labelledby="events-title">
         <div class="lg:sticky lg:top-8 lg:self-start">
@@ -645,61 +546,126 @@
             <p class="mt-2 text-lg font-bold leading-snug" data-next-event-title></p>
             <p class="mt-1 text-sm font-medium text-red-200" data-next-event-when></p>
           </div>
-          <a href="https://www.instagram.com/school212.minsk/" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-zinc-700 underline-offset-4 hover:text-zinc-950 hover:underline">Анонсы и фотоотчёты — в Instagram <span aria-hidden="true">↗</span><span class="sr-only">(откроется в новой вкладке)</span></a>
+          <a href="https://instagram.com/school_212_minsk?vrfl=dXI2bmY0Mnl5ZGZ1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-zinc-700 underline-offset-4 hover:text-zinc-950 hover:underline">Анонсы и фотоотчёты — в Instagram <span aria-hidden="true">↗</span><span class="sr-only">(откроется в новой вкладке)</span></a>
         </div>
 
         <div>
           <ol class="space-y-4" data-reveal-stagger>
-            <li data-event data-start="2026-10-16T15:00" data-end="2026-10-16T17:00" data-title="Осенняя макулатура: финальный рывок" data-location="Школьный двор, ул. Лобанка, 95">
-              <article class="event-card flex flex-col gap-5 rounded-3xl border border-white bg-white p-5 shadow-soft sm:flex-row sm:p-6" aria-labelledby="event-1-title">
-                <time datetime="2026-10-16" class="grid h-20 w-20 shrink-0 content-center rounded-2xl bg-red-50 text-center text-red-700 sm:h-24 sm:w-24"><span class="text-3xl font-extrabold leading-none tracking-tight sm:text-4xl">16</span><span class="mt-1 text-[11px] font-bold uppercase tracking-widest">окт, пт</span></time>
+            <li data-event data-all-day data-start="2026-10-01T00:00" data-end="2026-10-17T23:59" data-title="Фотоконкурс «Пионерский объектив»" data-location="ГУО «Средняя школа №212 г. Минска»">
+              <article class="event-card flex flex-col gap-5 rounded-3xl border border-white bg-white p-5 shadow-soft sm:flex-row sm:p-6" aria-labelledby="event-photo-title">
+                <time datetime="2026-10-01" class="grid h-20 w-20 shrink-0 content-center rounded-2xl bg-sky-50 text-sky-800 text-center sm:h-24 sm:w-24"><span class="text-[10px] font-bold uppercase tracking-widest opacity-70">с</span><span class="text-3xl font-extrabold leading-none tracking-tight sm:text-4xl">1</span><span class="mt-1 text-[11px] font-bold uppercase tracking-widest">окт</span></time>
+                <div class="min-w-0 flex-1">
+                  <div class="flex flex-wrap items-center gap-2"><span class="rounded-full bg-sky-50 px-2.5 py-1 text-[11px] font-bold text-sky-800">Фотоконкурс</span><span class="rounded-full px-2.5 py-1 text-[11px] font-bold" data-event-countdown hidden></span></div>
+                  <h3 id="event-photo-title" class="mt-3 text-lg font-bold tracking-tight">Фотоконкурс «Пионерский объектив»</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-zinc-600">Создай изображение по теме «Пионер будущего». Каким ты видишь пионера через много лет? Покажи это в фотографии.</p>
+                  <dl class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-zinc-600">
+                    <div class="flex items-center gap-2"><dt><svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg><span class="sr-only">Сроки</span></dt><dd>01.10.2026 – 17.10.2026</dd></div>
+                  </dl>
+                  <div class="mt-5 flex flex-wrap gap-2">
+                    <a href="https://t.me/+375299641133" target="_blank" rel="noopener noreferrer" data-event-join aria-describedby="event-photo-title" class="inline-flex min-h-11 items-center gap-2 rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700">Хочу участвовать <span aria-hidden="true">→</span><span class="sr-only">(откроется Telegram)</span></a>
+                    <button type="button" data-event-ics aria-describedby="event-photo-title" class="inline-flex min-h-11 items-center gap-2 rounded-full border border-zinc-200 px-4 py-2.5 text-sm font-semibold text-zinc-700 transition hover:border-zinc-400 hover:text-zinc-950"><span aria-hidden="true">+</span> В календарь</button>
+                  </div>
+                </div>
+              </article>
+            </li>
+            <li data-event data-all-day data-start="2026-10-01T00:00" data-end="2026-11-01T23:59" data-title="Конкурс юных корреспондентов «Пионерский репортёр»" data-location="ГУО «Средняя школа №212 г. Минска»">
+              <article class="event-card flex flex-col gap-5 rounded-3xl border border-white bg-white p-5 shadow-soft sm:flex-row sm:p-6" aria-labelledby="event-reporter-title">
+                <time datetime="2026-10-01" class="grid h-20 w-20 shrink-0 content-center rounded-2xl bg-sky-50 text-sky-800 text-center sm:h-24 sm:w-24"><span class="text-[10px] font-bold uppercase tracking-widest opacity-70">с</span><span class="text-3xl font-extrabold leading-none tracking-tight sm:text-4xl">1</span><span class="mt-1 text-[11px] font-bold uppercase tracking-widest">окт</span></time>
+                <div class="min-w-0 flex-1">
+                  <div class="flex flex-wrap items-center gap-2"><span class="rounded-full bg-sky-50 px-2.5 py-1 text-[11px] font-bold text-sky-800">Конкурс</span><span class="rounded-full px-2.5 py-1 text-[11px] font-bold" data-event-countdown hidden></span></div>
+                  <h3 id="event-reporter-title" class="mt-3 text-lg font-bold tracking-tight">Конкурс юных корреспондентов «Пионерский репортёр»</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-zinc-600">Возьми интервью у женщины, которая является для тебя примером: мамы, бабушки, учителя, тренера. Расскажи её историю.</p>
+                  <dl class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-zinc-600">
+                    <div class="flex items-center gap-2"><dt><svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg><span class="sr-only">Сроки</span></dt><dd>01.10.2026 – 01.11.2026</dd></div>
+                  </dl>
+                  <div class="mt-5 flex flex-wrap gap-2">
+                    <a href="https://t.me/+375299641133" target="_blank" rel="noopener noreferrer" data-event-join aria-describedby="event-reporter-title" class="inline-flex min-h-11 items-center gap-2 rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700">Хочу участвовать <span aria-hidden="true">→</span><span class="sr-only">(откроется Telegram)</span></a>
+                    <button type="button" data-event-ics aria-describedby="event-reporter-title" class="inline-flex min-h-11 items-center gap-2 rounded-full border border-zinc-200 px-4 py-2.5 text-sm font-semibold text-zinc-700 transition hover:border-zinc-400 hover:text-zinc-950"><span aria-hidden="true">+</span> В календарь</button>
+                  </div>
+                </div>
+              </article>
+            </li>
+            <li data-event data-all-day data-start="2026-10-01T00:00" data-end="2026-11-24T23:59" data-title="Конкурс видеороликов «Территория семьи» (1-й этап)" data-location="ГУО «Средняя школа №212 г. Минска»">
+              <article class="event-card flex flex-col gap-5 rounded-3xl border border-white bg-white p-5 shadow-soft sm:flex-row sm:p-6" aria-labelledby="event-family-title">
+                <time datetime="2026-10-01" class="grid h-20 w-20 shrink-0 content-center rounded-2xl bg-sky-50 text-sky-800 text-center sm:h-24 sm:w-24"><span class="text-[10px] font-bold uppercase tracking-widest opacity-70">с</span><span class="text-3xl font-extrabold leading-none tracking-tight sm:text-4xl">1</span><span class="mt-1 text-[11px] font-bold uppercase tracking-widest">окт</span></time>
+                <div class="min-w-0 flex-1">
+                  <div class="flex flex-wrap items-center gap-2"><span class="rounded-full bg-sky-50 px-2.5 py-1 text-[11px] font-bold text-sky-800">Видеоконкурс</span><span class="rounded-full px-2.5 py-1 text-[11px] font-bold" data-event-countdown hidden></span></div>
+                  <h3 id="event-family-title" class="mt-3 text-lg font-bold tracking-tight">Конкурс видеороликов «Территория семьи» (1-й этап)</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-zinc-600">Сними видеоролик о своей семье: традициях, увлечениях и том, что делает её особенной.</p>
+                  <dl class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-zinc-600">
+                    <div class="flex items-center gap-2"><dt><svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg><span class="sr-only">Сроки</span></dt><dd>01.10.2026 – 24.11.2026</dd></div>
+                  </dl>
+                  <div class="mt-5 flex flex-wrap gap-2">
+                    <a href="https://t.me/+375299641133" target="_blank" rel="noopener noreferrer" data-event-join aria-describedby="event-family-title" class="inline-flex min-h-11 items-center gap-2 rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700">Хочу участвовать <span aria-hidden="true">→</span><span class="sr-only">(откроется Telegram)</span></a>
+                    <button type="button" data-event-ics aria-describedby="event-family-title" class="inline-flex min-h-11 items-center gap-2 rounded-full border border-zinc-200 px-4 py-2.5 text-sm font-semibold text-zinc-700 transition hover:border-zinc-400 hover:text-zinc-950"><span aria-hidden="true">+</span> В календарь</button>
+                  </div>
+                </div>
+              </article>
+            </li>
+            <li data-event data-all-day data-start="2026-10-01T00:00" data-end="2027-05-20T23:59" data-title="Республиканский октябрятский маршрут «Территория детства: Октябрёнок 2.0»" data-location="ГУО «Средняя школа №212 г. Минска»">
+              <article class="event-card flex flex-col gap-5 rounded-3xl border border-white bg-white p-5 shadow-soft sm:flex-row sm:p-6" aria-labelledby="event-route-title">
+                <time datetime="2026-10-01" class="grid h-20 w-20 shrink-0 content-center rounded-2xl bg-amber-50 text-amber-800 text-center sm:h-24 sm:w-24"><span class="text-[10px] font-bold uppercase tracking-widest opacity-70">с</span><span class="text-3xl font-extrabold leading-none tracking-tight sm:text-4xl">1</span><span class="mt-1 text-[11px] font-bold uppercase tracking-widest">окт</span></time>
+                <div class="min-w-0 flex-1">
+                  <div class="flex flex-wrap items-center gap-2"><span class="rounded-full bg-amber-50 px-2.5 py-1 text-[11px] font-bold text-amber-800">Октябрята</span><span class="rounded-full px-2.5 py-1 text-[11px] font-bold" data-event-countdown hidden></span></div>
+                  <h3 id="event-route-title" class="mt-3 text-lg font-bold tracking-tight">Республиканский октябрятский маршрут «Территория детства: Октябрёнок 2.0»</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-zinc-600">Создание условий для личностного развития и самореализации октябрят через современные форматы деятельности.</p>
+                  <dl class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-zinc-600">
+                    <div class="flex items-center gap-2"><dt><svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg><span class="sr-only">Сроки</span></dt><dd>01.10.2026 – 20.05.2027</dd></div>
+                  </dl>
+                  <div class="mt-5 flex flex-wrap gap-2">
+                    <a href="https://t.me/+375299641133" target="_blank" rel="noopener noreferrer" data-event-join aria-describedby="event-route-title" class="inline-flex min-h-11 items-center gap-2 rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700">Хочу участвовать <span aria-hidden="true">→</span><span class="sr-only">(откроется Telegram)</span></a>
+                    <button type="button" data-event-ics aria-describedby="event-route-title" class="inline-flex min-h-11 items-center gap-2 rounded-full border border-zinc-200 px-4 py-2.5 text-sm font-semibold text-zinc-700 transition hover:border-zinc-400 hover:text-zinc-950"><span aria-hidden="true">+</span> В календарь</button>
+                  </div>
+                </div>
+              </article>
+            </li>
+            <li data-event data-all-day data-start="2026-10-04T00:00" data-end="2026-10-16T23:59" data-title="Акция по сбору макулатуры «Бумажный бум!»" data-location="ГУО «Средняя школа №212 г. Минска»">
+              <article class="event-card flex flex-col gap-5 rounded-3xl border border-white bg-white p-5 shadow-soft sm:flex-row sm:p-6" aria-labelledby="event-paper-title">
+                <time datetime="2026-10-04" class="grid h-20 w-20 shrink-0 content-center rounded-2xl bg-emerald-50 text-emerald-800 text-center sm:h-24 sm:w-24"><span class="text-[10px] font-bold uppercase tracking-widest opacity-70">с</span><span class="text-3xl font-extrabold leading-none tracking-tight sm:text-4xl">4</span><span class="mt-1 text-[11px] font-bold uppercase tracking-widest">окт</span></time>
                 <div class="min-w-0 flex-1">
                   <div class="flex flex-wrap items-center gap-2"><span class="rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-800">Эко-акция</span><span class="rounded-full px-2.5 py-1 text-[11px] font-bold" data-event-countdown hidden></span></div>
-                  <h3 id="event-1-title" class="mt-3 text-lg font-bold tracking-tight">Осенняя макулатура: финальный рывок</h3>
-                  <p class="mt-2 text-sm leading-relaxed text-zinc-600">Добираем последние 150 кг до цели сезона. Приносите связанную макулатуру — взвешиваем и записываем вклад каждого класса.</p>
+                  <h3 id="event-paper-title" class="mt-3 text-lg font-bold tracking-tight">Акция по сбору макулатуры «Бумажный бум!»</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-zinc-600">В рамках республиканской трудовой акции по сбору вторсырья «Сделаем мир чище». Приносите связанную макулатуру — взвешиваем и записываем вклад каждого класса.</p>
                   <dl class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-zinc-600">
-                    <div class="flex items-center gap-2"><dt><svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="sr-only">Время</span></dt><dd>15:00–17:00</dd></div>
-                    <div class="flex items-center gap-2"><dt><svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span class="sr-only">Место</span></dt><dd>Школьный двор</dd></div>
+                    <div class="flex items-center gap-2"><dt><svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg><span class="sr-only">Сроки</span></dt><dd>04.10.2026 – 16.10.2026</dd></div>
                   </dl>
                   <div class="mt-5 flex flex-wrap gap-2">
-                    <a href="https://t.me/+375299641133" target="_blank" rel="noopener noreferrer" data-event-join aria-describedby="event-1-title" class="inline-flex min-h-11 items-center gap-2 rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700">Хочу участвовать <span aria-hidden="true">→</span><span class="sr-only">(откроется Telegram)</span></a>
-                    <button type="button" data-event-ics aria-describedby="event-1-title" class="inline-flex min-h-11 items-center gap-2 rounded-full border border-zinc-200 px-4 py-2.5 text-sm font-semibold text-zinc-700 transition hover:border-zinc-400 hover:text-zinc-950"><span aria-hidden="true">+</span> В календарь</button>
+                    <a href="https://t.me/+375299641133" target="_blank" rel="noopener noreferrer" data-event-join aria-describedby="event-paper-title" class="inline-flex min-h-11 items-center gap-2 rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700">Хочу участвовать <span aria-hidden="true">→</span><span class="sr-only">(откроется Telegram)</span></a>
+                    <button type="button" data-event-ics aria-describedby="event-paper-title" class="inline-flex min-h-11 items-center gap-2 rounded-full border border-zinc-200 px-4 py-2.5 text-sm font-semibold text-zinc-700 transition hover:border-zinc-400 hover:text-zinc-950"><span aria-hidden="true">+</span> В календарь</button>
                   </div>
                 </div>
               </article>
             </li>
-            <li data-event data-start="2026-10-24T12:00" data-end="2026-10-24T13:30" data-title="Посвящение в октябрята" data-location="Актовый зал, СШ №212">
-              <article class="event-card flex flex-col gap-5 rounded-3xl border border-white bg-white p-5 shadow-soft sm:flex-row sm:p-6" aria-labelledby="event-2-title">
-                <time datetime="2026-10-24" class="grid h-20 w-20 shrink-0 content-center rounded-2xl bg-amber-50 text-center text-amber-800 sm:h-24 sm:w-24"><span class="text-3xl font-extrabold leading-none tracking-tight sm:text-4xl">24</span><span class="mt-1 text-[11px] font-bold uppercase tracking-widest">окт, сб</span></time>
+            <li data-event data-all-day data-start="2026-11-01T00:00" data-end="2026-12-20T23:59" data-title="Благотворительная акция «Рождественский подарок»" data-location="ГУО «Средняя школа №212 г. Минска»">
+              <article class="event-card flex flex-col gap-5 rounded-3xl border border-white bg-white p-5 shadow-soft sm:flex-row sm:p-6" aria-labelledby="event-gift-title">
+                <time datetime="2026-11-01" class="grid h-20 w-20 shrink-0 content-center rounded-2xl bg-red-50 text-red-700 text-center sm:h-24 sm:w-24"><span class="text-[10px] font-bold uppercase tracking-widest opacity-70">с</span><span class="text-3xl font-extrabold leading-none tracking-tight sm:text-4xl">1</span><span class="mt-1 text-[11px] font-bold uppercase tracking-widest">ноя</span></time>
                 <div class="min-w-0 flex-1">
-                  <div class="flex flex-wrap items-center gap-2"><span class="rounded-full bg-amber-50 px-2.5 py-1 text-[11px] font-bold text-amber-800">Традиция</span><span class="rounded-full px-2.5 py-1 text-[11px] font-bold" data-event-countdown hidden></span></div>
-                  <h3 id="event-2-title" class="mt-3 text-lg font-bold tracking-tight">Посвящение в октябрята</h3>
-                  <p class="mt-2 text-sm leading-relaxed text-zinc-600">Торжественный сбор для вторых классов. Пионеры-наставники готовят игры, песни и первые звёздочки.</p>
+                  <div class="flex flex-wrap items-center gap-2"><span class="rounded-full bg-red-50 px-2.5 py-1 text-[11px] font-bold text-red-700">Благотворительность</span><span class="rounded-full px-2.5 py-1 text-[11px] font-bold" data-event-countdown hidden></span></div>
+                  <h3 id="event-gift-title" class="mt-3 text-lg font-bold tracking-tight">Благотворительная акция «Рождественский подарок»</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-zinc-600">Собираем подарки для детей из детских домов. Игрушки, книги, канцтовары и сладости можно передать вожатому.</p>
                   <dl class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-zinc-600">
-                    <div class="flex items-center gap-2"><dt><svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="sr-only">Время</span></dt><dd>12:00–13:30</dd></div>
-                    <div class="flex items-center gap-2"><dt><svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span class="sr-only">Место</span></dt><dd>Актовый зал</dd></div>
+                    <div class="flex items-center gap-2"><dt><svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg><span class="sr-only">Сроки</span></dt><dd>01.11.2026 – 20.12.2026</dd></div>
                   </dl>
                   <div class="mt-5 flex flex-wrap gap-2">
-                    <a href="https://t.me/+375299641133" target="_blank" rel="noopener noreferrer" data-event-join aria-describedby="event-2-title" class="inline-flex min-h-11 items-center gap-2 rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700">Хочу участвовать <span aria-hidden="true">→</span><span class="sr-only">(откроется Telegram)</span></a>
-                    <button type="button" data-event-ics aria-describedby="event-2-title" class="inline-flex min-h-11 items-center gap-2 rounded-full border border-zinc-200 px-4 py-2.5 text-sm font-semibold text-zinc-700 transition hover:border-zinc-400 hover:text-zinc-950"><span aria-hidden="true">+</span> В календарь</button>
+                    <a href="https://t.me/+375299641133" target="_blank" rel="noopener noreferrer" data-event-join aria-describedby="event-gift-title" class="inline-flex min-h-11 items-center gap-2 rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700">Хочу участвовать <span aria-hidden="true">→</span><span class="sr-only">(откроется Telegram)</span></a>
+                    <button type="button" data-event-ics aria-describedby="event-gift-title" class="inline-flex min-h-11 items-center gap-2 rounded-full border border-zinc-200 px-4 py-2.5 text-sm font-semibold text-zinc-700 transition hover:border-zinc-400 hover:text-zinc-950"><span aria-hidden="true">+</span> В календарь</button>
                   </div>
                 </div>
               </article>
             </li>
-            <li data-event data-start="2026-11-06T14:00" data-end="2026-11-06T15:30" data-title="Акция «Открытка ветерану»" data-location="Пионерская комната, СШ №212">
-              <article class="event-card flex flex-col gap-5 rounded-3xl border border-white bg-white p-5 shadow-soft sm:flex-row sm:p-6" aria-labelledby="event-3-title">
-                <time datetime="2026-11-06" class="grid h-20 w-20 shrink-0 content-center rounded-2xl bg-zinc-100 text-center text-zinc-800 sm:h-24 sm:w-24"><span class="text-3xl font-extrabold leading-none tracking-tight sm:text-4xl">6</span><span class="mt-1 text-[11px] font-bold uppercase tracking-widest">ноя, пт</span></time>
+            <li data-event data-all-day data-start="2026-12-01T00:00" data-end="2026-12-31T23:59" data-title="«Пионерия 2.0»" data-location="ГУО «Средняя школа №212 г. Минска»">
+              <article class="event-card flex flex-col gap-5 rounded-3xl border border-white bg-white p-5 shadow-soft sm:flex-row sm:p-6" aria-labelledby="event-ai-title">
+                <time datetime="2026-12" class="grid h-20 w-20 shrink-0 content-center rounded-2xl bg-zinc-100 text-zinc-800 text-center sm:h-24 sm:w-24"><span class="text-2xl font-extrabold uppercase leading-none tracking-tight sm:text-3xl">дек</span><span class="mt-1 text-[11px] font-bold uppercase tracking-widest">2026</span></time>
                 <div class="min-w-0 flex-1">
-                  <div class="flex flex-wrap items-center gap-2"><span class="rounded-full bg-red-50 px-2.5 py-1 text-[11px] font-bold text-red-700">Волонтёрство</span><span class="rounded-full px-2.5 py-1 text-[11px] font-bold" data-event-countdown hidden></span></div>
-                  <h3 id="event-3-title" class="mt-3 text-lg font-bold tracking-tight">Акция «Открытка ветерану»</h3>
-                  <p class="mt-2 text-sm leading-relaxed text-zinc-600">Мастерим и подписываем открытки, которые «Тимуровцы 212» лично вручат ветеранам микрорайона.</p>
+                  <div class="flex flex-wrap items-center gap-2"><span class="rounded-full bg-zinc-100 px-2.5 py-1 text-[11px] font-bold text-zinc-700">Проект</span><span class="rounded-full px-2.5 py-1 text-[11px] font-bold" data-event-countdown hidden></span></div>
+                  <h3 id="event-ai-title" class="mt-3 text-lg font-bold tracking-tight">«Пионерия 2.0»</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-zinc-600">Развитие в сфере искусственного интеллекта: узнаём, как работают нейросети, и учимся применять их с пользой.</p>
                   <dl class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-zinc-600">
-                    <div class="flex items-center gap-2"><dt><svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="sr-only">Время</span></dt><dd>14:00–15:30</dd></div>
-                    <div class="flex items-center gap-2"><dt><svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span class="sr-only">Место</span></dt><dd>Пионерская комната</dd></div>
+                    <div class="flex items-center gap-2"><dt><svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg><span class="sr-only">Сроки</span></dt><dd>декабрь 2026</dd></div>
                   </dl>
                   <div class="mt-5 flex flex-wrap gap-2">
-                    <a href="https://t.me/+375299641133" target="_blank" rel="noopener noreferrer" data-event-join aria-describedby="event-3-title" class="inline-flex min-h-11 items-center gap-2 rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700">Хочу участвовать <span aria-hidden="true">→</span><span class="sr-only">(откроется Telegram)</span></a>
-                    <button type="button" data-event-ics aria-describedby="event-3-title" class="inline-flex min-h-11 items-center gap-2 rounded-full border border-zinc-200 px-4 py-2.5 text-sm font-semibold text-zinc-700 transition hover:border-zinc-400 hover:text-zinc-950"><span aria-hidden="true">+</span> В календарь</button>
+                    <a href="https://t.me/+375299641133" target="_blank" rel="noopener noreferrer" data-event-join aria-describedby="event-ai-title" class="inline-flex min-h-11 items-center gap-2 rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700">Хочу участвовать <span aria-hidden="true">→</span><span class="sr-only">(откроется Telegram)</span></a>
+                    <button type="button" data-event-ics aria-describedby="event-ai-title" class="inline-flex min-h-11 items-center gap-2 rounded-full border border-zinc-200 px-4 py-2.5 text-sm font-semibold text-zinc-700 transition hover:border-zinc-400 hover:text-zinc-950"><span aria-hidden="true">+</span> В календарь</button>
                   </div>
                 </div>
               </article>
@@ -779,7 +745,7 @@
         <p class="mt-4 max-w-2xl text-sm leading-relaxed text-zinc-600">Школьнику или родителю не нужно разбираться во всём самостоятельно — старший вожатый поможет пройти каждый шаг.</p>
         <ol class="mt-7 grid gap-4 md:grid-cols-3">
           <li class="join-step rounded-2xl bg-red-50 p-6"><span class="mb-4 grid h-10 w-10 place-items-center rounded-xl bg-white font-bold text-red-700" aria-hidden="true">01</span><h3 class="text-lg font-bold">Шаг 1. Познакомься</h3><p class="mt-2 text-sm leading-relaxed text-zinc-600">Загляни в пионерскую комнату — кабинет педагога-организатора — на любой перемене. Расположение уточни у сотрудника школы.</p></li>
-          <li class="join-step rounded-2xl bg-zinc-50 p-6"><span class="mb-4 grid h-10 w-10 place-items-center rounded-xl bg-white font-bold" aria-hidden="true">02</span><h3 class="text-lg font-bold">Шаг 2. Заполни заявление</h3><p class="mt-2 text-sm leading-relaxed text-zinc-600">Возьми у вожатого короткую анкету или согласие родителей — или <a href="#documents" class="font-semibold text-zinc-950 underline decoration-red-300 decoration-2 underline-offset-4 hover:decoration-red-600">скачай шаблоны</a> и заполни заранее. Задай вопросы — тебе подскажут, какие документы нужны.</p></li>
+          <li class="join-step rounded-2xl bg-zinc-50 p-6"><span class="mb-4 grid h-10 w-10 place-items-center rounded-xl bg-white font-bold" aria-hidden="true">02</span><h3 class="text-lg font-bold">Шаг 2. Заполни заявление</h3><p class="mt-2 text-sm leading-relaxed text-zinc-600">Возьми бланк у вожатого или <a href="#documents" class="font-semibold text-zinc-950 underline decoration-red-300 decoration-2 underline-offset-4 hover:decoration-red-600">скачай заявление</a> и заполни его заранее вместе с родителями. Задай вопросы — тебе подскажут, какие документы нужны.</p></li>
           <li class="join-step rounded-2xl bg-zinc-50 p-6"><span class="mb-4 grid h-10 w-10 place-items-center rounded-xl bg-white font-bold" aria-hidden="true">03</span><h3 class="text-lg font-bold">Шаг 3. Вливайся</h3><p class="mt-2 text-sm leading-relaxed text-zinc-600">Получи свой галстук или значок и приходи на первый сбор проектов. Вместе найдём дело, которое тебе интересно!</p></li>
         </ol>
         <a href="tel:+375299641133" class="mt-7 inline-flex rounded-full bg-zinc-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-zinc-700">Позвонить вожатому</a>
@@ -795,45 +761,17 @@
           </div>
           <p class="inline-flex items-center gap-2 rounded-full bg-zinc-100 px-3 py-1.5 text-xs font-medium text-zinc-600"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>Формат Microsoft Word (.docx)</p>
         </div>
-        <ul class="mt-8 grid gap-4 md:grid-cols-3" data-reveal-stagger>
+        <ul class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3" data-reveal-stagger>
           <li>
-            <a href="docs/zayavlenie-na-vstuplenie.docx" download="Заявление на вступление — дружина СШ 212.docx" class="doc-card group flex h-full flex-col rounded-2xl border border-zinc-200 bg-white p-6" aria-label="Скачать шаблон «Заявление на вступление», DOCX, 9 КБ">
+            <a href="docs/zayavlenie-oktyabryata-pionery.docx" download="заявление_на_вступление_в_октябрята_и_пионеры.docx" class="doc-card group flex h-full flex-col rounded-2xl border border-zinc-200 bg-white p-6" aria-label="Скачать «Заявление на вступление в октябрята и пионеры», DOCX, 16 КБ">
               <div class="flex items-start justify-between gap-3">
                 <svg class="h-14 w-12 text-red-600" viewBox="0 0 48 56" aria-hidden="true"><path d="M6 2h26l14 14v34a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4Z" fill="#fff" stroke="currentColor" stroke-width="2"/><path d="M32 2v10a4 4 0 0 0 4 4h10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 20h14M10 48h28" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".35"/><rect x="0" y="28" width="36" height="14" rx="3" fill="currentColor"/><text x="18" y="38.5" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="800" fill="#fff">DOCX</text></svg>
-                <span class="rounded-full bg-red-50 px-2.5 py-1 text-[11px] font-semibold text-red-700">Для учащихся</span>
+                <span class="rounded-full bg-red-50 px-2.5 py-1 text-[11px] font-semibold text-red-700">Для учащихся и родителей</span>
               </div>
-              <h3 class="mt-6 text-lg font-bold">Заявление на вступление</h3>
-              <p class="mt-2 flex-1 text-sm leading-relaxed text-zinc-600">Заявление в совет дружины с выбором направлений, в которых хочется участвовать.</p>
+              <h3 class="mt-6 text-lg font-bold">Заявление на вступление в октябрята и пионеры</h3>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-zinc-600">Заявление на имя председателя Совета пионерской дружины и согласие родителя (законного представителя) на одном листе.</p>
               <div class="mt-6 flex items-center justify-between gap-3 border-t border-zinc-100 pt-4">
-                <span class="text-xs font-medium text-zinc-500">DOCX · 9 КБ</span>
-                <span class="inline-flex items-center gap-2 rounded-full bg-zinc-950 px-4 py-2 text-xs font-semibold text-white transition group-hover:bg-red-700"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>Скачать</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="docs/soglasie-roditeley.docx" download="Согласие родителей — дружина СШ 212.docx" class="doc-card group flex h-full flex-col rounded-2xl border border-zinc-200 bg-white p-6" aria-label="Скачать шаблон «Согласие родителей», DOCX, 9 КБ">
-              <div class="flex items-start justify-between gap-3">
-                <svg class="h-14 w-12 text-amber-600" viewBox="0 0 48 56" aria-hidden="true"><path d="M6 2h26l14 14v34a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4Z" fill="#fff" stroke="currentColor" stroke-width="2"/><path d="M32 2v10a4 4 0 0 0 4 4h10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 20h14M10 48h28" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".35"/><rect x="0" y="28" width="36" height="14" rx="3" fill="#b45309"/><text x="18" y="38.5" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="800" fill="#fff">DOCX</text></svg>
-                <span class="rounded-full bg-amber-50 px-2.5 py-1 text-[11px] font-semibold text-amber-800">Для родителей</span>
-              </div>
-              <h3 class="mt-6 text-lg font-bold">Согласие родителей</h3>
-              <p class="mt-2 flex-1 text-sm leading-relaxed text-zinc-600">Согласие законного представителя на вступление в БРПО, обработку данных и публикацию фото.</p>
-              <div class="mt-6 flex items-center justify-between gap-3 border-t border-zinc-100 pt-4">
-                <span class="text-xs font-medium text-zinc-500">DOCX · 9 КБ</span>
-                <span class="inline-flex items-center gap-2 rounded-full bg-zinc-950 px-4 py-2 text-xs font-semibold text-white transition group-hover:bg-red-700"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>Скачать</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="docs/grafik-dezhurstv.docx" download="График дежурств — дружина СШ 212.docx" class="doc-card group flex h-full flex-col rounded-2xl border border-zinc-200 bg-white p-6" aria-label="Скачать шаблон «График дежурств», DOCX, 9 КБ">
-              <div class="flex items-start justify-between gap-3">
-                <svg class="h-14 w-12 text-zinc-800" viewBox="0 0 48 56" aria-hidden="true"><path d="M6 2h26l14 14v34a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4Z" fill="#fff" stroke="currentColor" stroke-width="2"/><path d="M32 2v10a4 4 0 0 0 4 4h10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 20h14M10 48h28" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".35"/><rect x="0" y="28" width="36" height="14" rx="3" fill="currentColor"/><text x="18" y="38.5" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="800" fill="#fff">DOCX</text></svg>
-                <span class="rounded-full bg-zinc-100 px-2.5 py-1 text-[11px] font-semibold text-zinc-700">Для актива</span>
-              </div>
-              <h3 class="mt-6 text-lg font-bold">График дежурств</h3>
-              <p class="mt-2 flex-1 text-sm leading-relaxed text-zinc-600">Таблица на учебную неделю: дежурный класс, ответственный, время и отметка о выполнении.</p>
-              <div class="mt-6 flex items-center justify-between gap-3 border-t border-zinc-100 pt-4">
-                <span class="text-xs font-medium text-zinc-500">DOCX · 9 КБ</span>
+                <span class="text-xs font-medium text-zinc-500">DOCX · 16 КБ</span>
                 <span class="inline-flex items-center gap-2 rounded-full bg-zinc-950 px-4 py-2 text-xs font-semibold text-white transition group-hover:bg-red-700"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>Скачать</span>
               </div>
             </a>
@@ -856,9 +794,9 @@
             <div class="rounded-2xl border border-zinc-100 bg-zinc-50 p-5">
               <div class="flex items-center gap-4">
                 <span class="ig-ring shrink-0 rounded-full p-[3px]"><img src="logo.jpg" alt="" width="56" height="56" class="h-14 w-14 rounded-full border-2 border-white bg-white object-cover" loading="lazy" decoding="async" /></span>
-                <div class="min-w-0"><p class="truncate font-bold">school212.minsk</p><p class="text-xs text-zinc-500">Средняя школа №212 · Минск</p></div>
+                <div class="min-w-0"><p class="truncate font-bold">school_212_minsk</p><p class="text-xs text-zinc-500">Средняя школа №212 · Минск</p></div>
               </div>
-              <a href="https://www.instagram.com/school212.minsk/" target="_blank" rel="noopener noreferrer" class="mt-5 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-zinc-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-zinc-700"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>Подписаться в Instagram<span class="sr-only">(откроется в новой вкладке)</span></a>
+              <a href="https://instagram.com/school_212_minsk?vrfl=dXI2bmY0Mnl5ZGZ1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" class="mt-5 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-zinc-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-zinc-700"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>Подписаться в Instagram<span class="sr-only">(откроется в новой вкладке)</span></a>
             </div>
             <a href="https://www.tiktok.com/@school212minsk" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 rounded-2xl bg-zinc-950 p-5 text-white transition hover:bg-zinc-800">
               <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-white/10" aria-hidden="true"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M16.2 2.5c.35 2.3 1.85 3.9 4.3 4.15v3.3c-1.6.05-3.05-.45-4.3-1.3v6.6a6.25 6.25 0 1 1-6.25-6.25c.3 0 .6.02.9.07v3.42a2.9 2.9 0 1 0 2.05 2.76V2.5h3.3Z"/></svg></span>
@@ -869,12 +807,12 @@
 
           <div class="bg-zinc-50 p-2 sm:p-4 lg:p-6">
             <ul class="grid grid-cols-3 gap-1 sm:gap-2" aria-label="Публикации в Instagram">
-              <li><a href="https://www.instagram.com/school212.minsk/" target="_blank" rel="noopener noreferrer" class="ig-tile relative block aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 sm:rounded-xl"><img src="photo-2.jpg" alt="Участники дружины на осеннем событии" width="959" height="1280" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="ig-tile__type" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="3" width="14" height="14" rx="3"/><path d="M5 7v10a2 2 0 0 0 2 2h10v2H7a4 4 0 0 1-4-4V7Z"/></svg></span><span class="ig-tile__overlay" aria-hidden="true"><span class="line-clamp-3 text-xs font-medium leading-snug">Осенний сбор дружины: планы, идеи и новые лица</span></span><span class="sr-only">— открыть в Instagram (новая вкладка)</span></a></li>
-              <li><a href="https://www.instagram.com/school212.minsk/" target="_blank" rel="noopener noreferrer" class="ig-tile relative block aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 sm:rounded-xl"><img src="photo-3.jpg" alt="Командная работа над проектом" width="960" height="1280" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="ig-tile__type" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10.5-6.5Z"/></svg></span><span class="ig-tile__overlay" aria-hidden="true"><span class="line-clamp-3 text-xs font-medium leading-snug">Как рождается проект: 60 секунд из штаба</span></span><span class="sr-only">— открыть в Instagram (новая вкладка)</span></a></li>
-              <li><a href="https://www.instagram.com/school212.minsk/" target="_blank" rel="noopener noreferrer" class="ig-tile relative block aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 sm:rounded-xl"><img src="photo-4.jpg" alt="Пионеры на волонтёрской акции" width="960" height="1280" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="ig-tile__overlay" aria-hidden="true"><span class="line-clamp-3 text-xs font-medium leading-snug">Маленькие дела, которые складываются в большие</span></span><span class="sr-only">— открыть в Instagram (новая вкладка)</span></a></li>
-              <li><a href="https://www.instagram.com/school212.minsk/" target="_blank" rel="noopener noreferrer" class="ig-tile relative block aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 sm:rounded-xl"><img src="photo-8.jpg" alt="Творческий момент команды" width="960" height="1280" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="ig-tile__type" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="3" width="14" height="14" rx="3"/><path d="M5 7v10a2 2 0 0 0 2 2h10v2H7a4 4 0 0 1-4-4V7Z"/></svg></span><span class="ig-tile__overlay" aria-hidden="true"><span class="line-clamp-3 text-xs font-medium leading-snug">Мастерская открыток: готовимся к акции для ветеранов</span></span><span class="sr-only">— открыть в Instagram (новая вкладка)</span></a></li>
-              <li><a href="https://www.instagram.com/school212.minsk/" target="_blank" rel="noopener noreferrer" class="ig-tile relative block aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 sm:rounded-xl"><img src="photo-5.jpg" alt="Финал школьного события" width="960" height="1280" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="ig-tile__overlay" aria-hidden="true"><span class="line-clamp-3 text-xs font-medium leading-snug">Финал недели добрых дел — спасибо каждому!</span></span><span class="sr-only">— открыть в Instagram (новая вкладка)</span></a></li>
-              <li><a href="https://www.instagram.com/school212.minsk/" target="_blank" rel="noopener noreferrer" class="ig-tile relative block aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 sm:rounded-xl"><img src="photo-main.jpg" alt="Пионерская дружина в полном составе" width="960" height="1280" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="ig-tile__type" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10.5-6.5Z"/></svg></span><span class="ig-tile__overlay" aria-hidden="true"><span class="line-clamp-3 text-xs font-medium leading-snug">Одна дружина — много возможностей</span></span><span class="sr-only">— открыть в Instagram (новая вкладка)</span></a></li>
+              <li><a href="https://instagram.com/school_212_minsk?vrfl=dXI2bmY0Mnl5ZGZ1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" class="ig-tile relative block aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 sm:rounded-xl"><img src="photo-2.jpg" alt="Участники дружины на осеннем событии" width="959" height="1280" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="ig-tile__type" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="3" width="14" height="14" rx="3"/><path d="M5 7v10a2 2 0 0 0 2 2h10v2H7a4 4 0 0 1-4-4V7Z"/></svg></span><span class="ig-tile__overlay" aria-hidden="true"><span class="line-clamp-3 text-xs font-medium leading-snug">Осенний сбор дружины: планы, идеи и новые лица</span></span><span class="sr-only">— открыть в Instagram (новая вкладка)</span></a></li>
+              <li><a href="https://instagram.com/school_212_minsk?vrfl=dXI2bmY0Mnl5ZGZ1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" class="ig-tile relative block aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 sm:rounded-xl"><img src="photo-3.jpg" alt="Командная работа над проектом" width="960" height="1280" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="ig-tile__type" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10.5-6.5Z"/></svg></span><span class="ig-tile__overlay" aria-hidden="true"><span class="line-clamp-3 text-xs font-medium leading-snug">Как рождается проект: 60 секунд из штаба</span></span><span class="sr-only">— открыть в Instagram (новая вкладка)</span></a></li>
+              <li><a href="https://instagram.com/school_212_minsk?vrfl=dXI2bmY0Mnl5ZGZ1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" class="ig-tile relative block aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 sm:rounded-xl"><img src="photo-4.jpg" alt="Пионеры на волонтёрской акции" width="960" height="1280" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="ig-tile__overlay" aria-hidden="true"><span class="line-clamp-3 text-xs font-medium leading-snug">Маленькие дела, которые складываются в большие</span></span><span class="sr-only">— открыть в Instagram (новая вкладка)</span></a></li>
+              <li><a href="https://instagram.com/school_212_minsk?vrfl=dXI2bmY0Mnl5ZGZ1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" class="ig-tile relative block aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 sm:rounded-xl"><img src="photo-8.jpg" alt="Творческий момент команды" width="960" height="1280" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="ig-tile__type" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="3" width="14" height="14" rx="3"/><path d="M5 7v10a2 2 0 0 0 2 2h10v2H7a4 4 0 0 1-4-4V7Z"/></svg></span><span class="ig-tile__overlay" aria-hidden="true"><span class="line-clamp-3 text-xs font-medium leading-snug">Мастерская открыток: готовимся к акции для ветеранов</span></span><span class="sr-only">— открыть в Instagram (новая вкладка)</span></a></li>
+              <li><a href="https://instagram.com/school_212_minsk?vrfl=dXI2bmY0Mnl5ZGZ1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" class="ig-tile relative block aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 sm:rounded-xl"><img src="photo-5.jpg" alt="Финал школьного события" width="960" height="1280" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="ig-tile__overlay" aria-hidden="true"><span class="line-clamp-3 text-xs font-medium leading-snug">Финал недели добрых дел — спасибо каждому!</span></span><span class="sr-only">— открыть в Instagram (новая вкладка)</span></a></li>
+              <li><a href="https://instagram.com/school_212_minsk?vrfl=dXI2bmY0Mnl5ZGZ1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" class="ig-tile relative block aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 sm:rounded-xl"><img src="photo-main.jpg" alt="Пионерская дружина в полном составе" width="960" height="1280" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="ig-tile__type" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10.5-6.5Z"/></svg></span><span class="ig-tile__overlay" aria-hidden="true"><span class="line-clamp-3 text-xs font-medium leading-snug">Одна дружина — много возможностей</span></span><span class="sr-only">— открыть в Instagram (новая вкладка)</span></a></li>
             </ul>
           </div>
         </div>
@@ -886,7 +824,7 @@
           <h2 class="mt-6 max-w-lg text-4xl font-extrabold tracking-[-.05em] sm:text-5xl">Вступить в ряды!</h2>
           <a href="tel:+375299641133" class="mt-8 inline-flex items-center gap-3 rounded-full bg-white px-5 py-3 text-sm font-bold text-zinc-950 transition hover:bg-red-100 focus:outline-none focus:ring-4 focus:ring-red-300">Позвонить вожатому <span class="text-xl leading-none" aria-hidden="true">→</span></a>
           <ul class="mt-8 flex flex-wrap gap-2" aria-label="Мы в соцсетях">
-            <li><a href="https://www.instagram.com/school212.minsk/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 px-4 text-sm font-semibold text-white transition hover:border-white/50 hover:bg-white/10"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>Instagram<span class="sr-only">(откроется в новой вкладке)</span></a></li>
+            <li><a href="https://instagram.com/school_212_minsk?vrfl=dXI2bmY0Mnl5ZGZ1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 px-4 text-sm font-semibold text-white transition hover:border-white/50 hover:bg-white/10"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>Instagram<span class="sr-only">(откроется в новой вкладке)</span></a></li>
             <li><a href="https://www.tiktok.com/@school212minsk" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 px-4 text-sm font-semibold text-white transition hover:border-white/50 hover:bg-white/10"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.2 2.5c.35 2.3 1.85 3.9 4.3 4.15v3.3c-1.6.05-3.05-.45-4.3-1.3v6.6a6.25 6.25 0 1 1-6.25-6.25c.3 0 .6.02.9.07v3.42a2.9 2.9 0 1 0 2.05 2.76V2.5h3.3Z"/></svg>TikTok<span class="sr-only">(откроется в новой вкладке)</span></a></li>
             <li><a href="https://t.me/+375299641133" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 px-4 text-sm font-semibold text-white transition hover:border-white/50 hover:bg-white/10"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>Telegram вожатого<span class="sr-only">(откроется в новой вкладке)</span></a></li>
           </ul>
@@ -950,6 +888,101 @@
           });
         });
         activateTab(tabs[0]);
+
+        // ---------- Лента добрых дел: каждый пост — отдельная карточка со своим описанием ----------
+        // Чтобы добавить пост, допишите объект в FEED_POSTS. date — 'ГГГГ-ММ-ДД' или '' (без даты).
+        // media.type — 'photo' или 'video'; для видео poster — картинка-обложка.
+        const FEED_POSTS = [
+          {
+            date: '', tag: 'Октябрята',
+            title: 'Мы — октябрята!',
+            text: 'Торжественное принятие учащихся вторых классов в октябрята. Каждый получил «Удостоверение октябрёнка» и октябрятскую звёздочку, а потом ребята вместе произнесли торжественное обещание.',
+            media: { type: 'video', src: 'video-main.mp4', poster: 'img/video-main-poster.jpg' },
+          },
+          {
+            date: '', tag: 'Октябрята',
+            title: 'Новые октябрята на сцене',
+            text: 'Вторые классы впервые вышли на сцену актового зала уже октябрятами — со звёздочками и удостоверениями в руках. Добро пожаловать в дружину!',
+            media: { type: 'photo', src: 'photo-9.jpg', width: 960, height: 1280, alt: 'Новые октябрята со звёздочками на сцене актового зала' },
+          },
+          {
+            date: '', tag: 'Октябрята',
+            title: 'Полный зал болельщиков',
+            text: 'На посвящение пришли одноклассники, старшие ребята и педагоги. Поддержка зала — лучший подарок для тех, кто в этот день сделал свой первый шаг в организации.',
+            media: { type: 'photo', src: 'photo-8.jpg', width: 960, height: 1280, alt: 'Зрители в актовом зале школы' },
+          },
+          {
+            date: '', tag: 'Пионеры',
+            title: 'Приём в пионеры',
+            text: 'Самый волнующий момент: старшие товарищи повязывают новым пионерам красные галстуки. Ребята пообещали быть честными, дружными и всегда готовыми помочь.',
+            media: { type: 'photo', src: 'photo-5.jpg', width: 960, height: 1280, alt: 'Новым пионерам повязывают красные галстуки' },
+          },
+          {
+            date: '', tag: 'Пионеры',
+            title: 'Пионерская линейка',
+            text: 'Пионеры в красных галстуках выстроились на торжественную линейку. Строгий строй, торжественные слова и общее настроение — то, что объединяет дружину.',
+            media: { type: 'photo', src: 'photo-6.jpg', width: 1280, height: 1280, alt: 'Пионеры в красных галстуках на торжественной линейке' },
+          },
+          {
+            date: '', tag: 'Традиции',
+            title: 'Торжественный сбор дружины',
+            text: 'Знаменная группа и ведущие открыли сбор дружины. На сцене — ребята, которые в этом году получили значки и новые поручения в активе.',
+            media: { type: 'photo', src: 'photo-7.jpg', width: 1280, height: 1280, alt: 'Знаменная группа и участники торжественного сбора дружины' },
+          },
+          {
+            date: '', tag: 'Октябрята',
+            title: 'Октябрятский квест 2026',
+            text: 'Октябрята прошли испытание БРПО «Октябрятский квест 2026»: станции в классах и спортзале, задания на смекалку, ловкость и умение работать в команде.',
+            media: { type: 'photo', src: 'photo-main.jpg', width: 960, height: 1280, alt: 'Коллаж: испытание «Октябрятский квест 2026»' },
+          },
+          {
+            date: '', tag: 'Награждение',
+            title: 'БРПО — сила!',
+            text: 'Подводим итоги: участники конкурсов и акций дружины получили грамоты и благодарности. Спасибо каждому, кто вложил силы в общее дело!',
+            media: { type: 'photo', src: 'photo-2.jpg', width: 959, height: 1280, alt: 'Коллаж: награждение участников конкурсов дружины' },
+          },
+          {
+            date: '', tag: 'Видео',
+            title: 'Большой праздник октябрят',
+            text: 'Наши октябрята побывали на большом празднике для октябрят: яркая сцена, песни, танцы и сотни ребят из разных школ в одном зале.',
+            media: { type: 'video', src: 'video-1.mp4', poster: 'img/video-1-poster.jpg' },
+          },
+          {
+            date: '', tag: 'Встреча',
+            title: 'Встреча с почётными гостями',
+            text: 'Октябрята и пионеры дружины встретились с почётными гостями праздника, рассказали о своих делах и сфотографировались на память.',
+            media: { type: 'photo', src: 'photo-4.jpg', width: 960, height: 1280, alt: 'Октябрята и пионеры с почётными гостями праздника' },
+          },
+          {
+            date: '', tag: 'Экскурсия',
+            title: 'На выставке детского творчества',
+            text: 'Вместе с педагогом ребята посмотрели выставку детских работ: рисунки, поделки и идеи, которые хочется повторить в нашей дружине.',
+            media: { type: 'photo', src: 'photo-3.jpg', width: 960, height: 1280, alt: 'Ребята с педагогом на выставке детского творчества' },
+          },
+        ];
+
+        const feed = document.querySelector('[data-feed]');
+        if (feed) {
+          const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
+          const feedDate = new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+          feed.innerHTML = FEED_POSTS.map((post, index) => {
+            const number = String(index + 1).padStart(2, '0');
+            const media = post.media.type === 'video'
+              ? `<div class="media-frame aspect-video w-full overflow-hidden bg-zinc-950"><video class="h-full w-full object-cover" controls preload="metadata" muted playsinline poster="${escapeHtml(post.media.poster || '')}"><source src="${escapeHtml(post.media.src)}" type="video/mp4" />Ваш браузер не поддерживает воспроизведение видео.</video></div>`
+              : `<div class="media-frame aspect-video w-full overflow-hidden bg-zinc-100"><button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: ${escapeHtml(post.media.alt)}" aria-haspopup="dialog"><img src="${escapeHtml(post.media.src)}" width="${post.media.width}" height="${post.media.height}" alt="${escapeHtml(post.media.alt)}" class="h-full w-full object-cover" loading="lazy" decoding="async" /></button></div>`;
+            const date = post.date
+              ? `<time datetime="${escapeHtml(post.date)}" class="shrink-0 rounded-full bg-zinc-100 px-3 py-1.5 text-[11px] font-medium text-zinc-600">${feedDate.format(new Date(`${post.date}T12:00:00+03:00`))}</time>`
+              : '';
+            return `<article class="relative pl-8 sm:pl-12">
+                <span class="absolute left-0 top-7 grid h-[2.15rem] w-[2.15rem] place-items-center rounded-full border-4 border-[#f7f7f6] ${index % 2 ? 'bg-red-600' : 'bg-zinc-950'} text-[10px] font-bold text-white shadow-soft">${number}</span>
+                <div class="overflow-hidden rounded-3xl border border-white bg-white shadow-soft">
+                  <header class="flex flex-wrap items-center justify-between gap-3 px-5 py-4 sm:px-6"><div class="flex min-w-0 items-center gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-red-50 text-sm font-extrabold text-red-700">212</span><div class="min-w-0"><p class="truncate text-sm font-bold">Пионерская дружина имени В.Е. Лобанка</p><p class="text-xs text-zinc-500">ГУО «Средняя школа №212 г. Минска»</p></div></div>${date}</header>
+                  ${media}
+                  <div class="p-5 sm:p-6"><h4 class="text-lg font-bold tracking-tight">${escapeHtml(post.title)}</h4><p class="mt-2 text-sm leading-relaxed text-zinc-600">${escapeHtml(post.text)}</p><div class="share-row mt-5 flex flex-wrap justify-between gap-3 border-t border-zinc-100 pt-4 text-xs font-medium"><span class="rounded-full bg-zinc-100 px-3 py-1.5 text-zinc-600">${escapeHtml(post.tag)}</span><button type="button" class="share-button px-3 py-2" data-share-title="${escapeHtml(post.title)}"><span aria-hidden="true">↗</span> Поделиться</button></div></div>
+                </div>
+              </article>`;
+          }).join('\n');
+        }
 
         const toast = document.getElementById('toast');
         let toastTimer;
@@ -1094,7 +1127,6 @@
         });
 
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const numberFormat = new Intl.NumberFormat('ru-RU');
         const plural = (n, [one, few, many]) => {
           const mod10 = n % 10;
           const mod100 = n % 100;
@@ -1120,68 +1152,6 @@
         window.addEventListener('hashchange', openTabFromHash);
         openTabFromHash();
 
-        // ---------- Dashboard of good deeds: counters and progress bars ----------
-        const counters = [...document.querySelectorAll('[data-count-to]')];
-        const meters = [...document.querySelectorAll('[data-meter]')];
-
-        counters.forEach((counter) => {
-          // Screen readers get the final value once instead of every animation frame.
-          const label = document.createElement('span');
-          label.className = 'sr-only';
-          label.textContent = numberFormat.format(Number(counter.dataset.countTo));
-          counter.after(label);
-          counter.setAttribute('aria-hidden', 'true');
-          if (!reduceMotion) counter.textContent = '0';
-        });
-
-        meters.forEach((meter) => {
-          const now = Number(meter.getAttribute('aria-valuenow'));
-          const max = Number(meter.getAttribute('aria-valuemax')) || 1;
-          const unit = meter.dataset.unit || '';
-          const percent = Math.min(100, Math.round((now / max) * 100));
-          const left = Math.max(0, max - now);
-          meter.dataset.percent = percent;
-          meter.setAttribute('aria-valuetext', `${numberFormat.format(now)} из ${numberFormat.format(max)} ${unit}, ${percent}%`);
-          const caption = meter.parentElement.querySelector('[data-meter-caption]');
-          if (caption) caption.textContent = left ? `${percent}% · осталось ${numberFormat.format(left)} ${unit}` : `${percent}% · цель достигнута!`;
-          meter.querySelector('[data-meter-fill]').style.width = reduceMotion ? `${percent}%` : '0%';
-        });
-
-        function animateCount(counter) {
-          const target = Number(counter.dataset.countTo);
-          const startedAt = performance.now();
-          const tick = (now) => {
-            const progress = Math.min(1, (now - startedAt) / 1400);
-            counter.textContent = numberFormat.format(Math.round(target * (1 - Math.pow(1 - progress, 4))));
-            if (progress < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
-        }
-
-        function playMetrics(group) {
-          group.querySelectorAll('[data-count-to]').forEach(animateCount);
-          group.querySelectorAll('[data-meter]').forEach((meter) => {
-            meter.querySelector('[data-meter-fill]').style.width = `${meter.dataset.percent}%`;
-          });
-        }
-
-        // Groups inside hidden tab panels start intersecting as soon as the tab is opened.
-        const metricGroups = document.querySelectorAll('[data-metrics]');
-        if (!reduceMotion) {
-          if ('IntersectionObserver' in window) {
-            const metricsObserver = new IntersectionObserver((entries, observer) => {
-              entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                observer.unobserve(entry.target);
-                playMetrics(entry.target);
-              });
-            }, { threshold: 0.2 });
-            metricGroups.forEach((group) => metricsObserver.observe(group));
-          } else {
-            metricGroups.forEach(playMetrics);
-          }
-        }
-
         // ---------- Upcoming events: countdown, auto-hide past events, join, .ics ----------
         const parseMinsk = (value) => new Date(`${value}:00+03:00`);
         const minskDayIndex = (date) => Math.floor((date.getTime() + 3 * 3600e3) / 864e5);
@@ -1189,6 +1159,11 @@
         const timeFormat = new Intl.DateTimeFormat('ru-RU', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Minsk' });
         const encoder = new TextEncoder();
         const icsDate = (date) => date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+        const icsDay = (value, addDays = 0) => {
+          const date = new Date(`${value.slice(0, 10)}T12:00:00Z`);
+          date.setUTCDate(date.getUTCDate() + addDays);
+          return date.toISOString().slice(0, 10).replace(/-/g, '');
+        };
         const icsEscape = (value) => value.replace(/[\\;,]/g, (match) => `\\${match}`);
         const icsFold = (line) => {
           // RFC 5545: lines longer than 75 octets continue on the next line after a space.
@@ -1214,8 +1189,9 @@
             'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Druzhina Lobanka 212//RU', 'CALSCALE:GREGORIAN', 'BEGIN:VEVENT',
             `UID:${icsDate(start)}-${item.querySelector('h3').id}@brpo-212.vercel.app`,
             `DTSTAMP:${icsDate(new Date())}`,
-            `DTSTART:${icsDate(start)}`,
-            `DTEND:${icsDate(end)}`,
+            ...(item.hasAttribute('data-all-day')
+              ? [`DTSTART;VALUE=DATE:${icsDay(item.dataset.start)}`, `DTEND;VALUE=DATE:${icsDay(item.dataset.end, 1)}`]
+              : [`DTSTART:${icsDate(start)}`, `DTEND:${icsDate(end)}`]),
             `SUMMARY:${icsEscape(item.dataset.title)}`,
             `LOCATION:${icsEscape(item.dataset.location || '')}`,
             `DESCRIPTION:${icsEscape('Пионерская дружина имени В.Е. Лобанка. Вопросы: +375 29 964-11-33')}`,
@@ -1239,9 +1215,10 @@
           const todayIndex = minskDayIndex(now);
           const nextCard = document.querySelector('[data-next-event]');
           let upcoming = 0;
+          let nextShown = false;
           const items = [...eventList.querySelectorAll('[data-event]')]
-            .map((item) => ({ item, start: parseMinsk(item.dataset.start) }))
-            .sort((a, b) => a.start - b.start);
+            .map((item) => ({ item, start: parseMinsk(item.dataset.start), end: parseMinsk(item.dataset.end || item.dataset.start) }))
+            .sort((a, b) => a.start - b.start || a.end - b.end);
 
           items.forEach(({ item, start }) => {
             eventList.append(item);
@@ -1250,22 +1227,31 @@
               item.hidden = true;
               return;
             }
+            const allDay = item.hasAttribute('data-all-day');
+            const ongoing = start <= now;
             const daysLeft = minskDayIndex(start) - todayIndex;
-            const when = daysLeft <= 0 ? 'Сегодня' : daysLeft === 1 ? 'Завтра' : `Через ${daysLeft} ${plural(daysLeft, ['день', 'дня', 'дней'])}`;
+            const startsIn = daysLeft <= 0 ? 'Сегодня' : daysLeft === 1 ? 'Завтра' : `Через ${daysLeft} ${plural(daysLeft, ['день', 'дня', 'дней'])}`;
+            const endLabel = end.getFullYear() === now.getFullYear() ? dayFormat.format(end) : `${dayFormat.format(end)} ${end.getFullYear()}`;
+            const when = ongoing && allDay ? `Идёт до ${endLabel}` : startsIn;
             const badge = item.querySelector('[data-event-countdown]');
             badge.textContent = when;
-            badge.classList.add(...(daysLeft <= 7 ? ['bg-red-600', 'text-white'] : ['bg-zinc-100', 'text-zinc-700']));
+            badge.classList.add(...(ongoing ? ['bg-emerald-600', 'text-white'] : daysLeft <= 7 ? ['bg-red-600', 'text-white'] : ['bg-zinc-100', 'text-zinc-700']));
             badge.hidden = false;
 
-            if (upcoming === 0 && nextCard) {
+            // «Следующее событие» — ближайшее из тех, что ещё не начались.
+            if (!ongoing && !nextShown && nextCard) {
               nextCard.querySelector('[data-next-event-title]').textContent = item.dataset.title;
-              nextCard.querySelector('[data-next-event-when]').textContent = `${dayFormat.format(start)}, ${timeFormat.format(start)} · ${when.toLowerCase()}`;
+              nextCard.querySelector('[data-next-event-when]').textContent = allDay
+                ? `с ${dayFormat.format(start)} · ${when.toLowerCase()}`
+                : `${dayFormat.format(start)}, ${timeFormat.format(start)} · ${when.toLowerCase()}`;
               nextCard.hidden = false;
+              nextShown = true;
             }
             upcoming += 1;
 
             item.querySelector('[data-event-join]')?.addEventListener('click', () => {
-              const message = `Здравствуйте! Хочу участвовать: «${item.dataset.title}», ${dayFormat.format(start)} в ${timeFormat.format(start)}.`;
+              const period = allDay ? `с ${dayFormat.format(start)} по ${dayFormat.format(end)}` : `${dayFormat.format(start)} в ${timeFormat.format(start)}`;
+              const message = `Здравствуйте! Хочу участвовать: «${item.dataset.title}», ${period}.`;
               copyText(message)
                 .then(() => showToast('Текст заявки скопирован — вставьте его в чат с вожатым', 4500))
                 .catch(() => {});
