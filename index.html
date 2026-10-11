@@ -141,24 +141,18 @@
       }
       .toast.is-visible { transform: translateY(0); opacity: 1; }
       .join-step, .symbol-card { min-width: 0; }
-      .symbol-visual {
-        aspect-ratio: 4 / 3;
-        display: grid;
-        place-items: center;
-        overflow: hidden;
-        border-radius: 1.25rem;
-        background: linear-gradient(135deg, #fff1f2, #f4f4f5);
-        color: #be4653;
-      }
       .symbol-card { transition: transform .2s ease, box-shadow .2s ease; }
       .symbol-card:hover, .symbol-card:focus-within { transform: translateY(-3px); box-shadow: 0 16px 30px -20px rgb(24 24 27 / .35); }
-      .symbol-visual svg { width: 52%; height: 52%; }
-      .symbol-visual--image { background: #fff; border: 1px solid #f4f4f5; }
-      .symbol-visual img { width: 64%; height: 64%; object-fit: contain; }
-      .symbol-visual--portrait { aspect-ratio: 3 / 4; }
-      /* Иллюстрации символики выводятся как есть: целиком, в исходных пропорциях, без обрезки, фильтров и скруглений. */
-      .symbol-photo { margin-left: 0; margin-right: 0; }
-      .symbol-photo img { display: block; width: 100%; height: auto; max-width: 100%; }
+      /* Символика: картинки выводятся как есть — целиком, в исходных пропорциях, без обрезки, фильтров и скруглений.
+         Под стиль сайта подстроено только окружение: карточка, «паспарту» и акценты в цветах пионерского галстука. */
+      .symbol-card--art { background: linear-gradient(180deg, #eef7f6 0%, #ffffff 58%); }
+      .symbol-card--art:hover, .symbol-card--art:focus-within { box-shadow: 0 22px 40px -26px rgb(159 18 57 / .35); border-color: #fecdd3; }
+      .symbol-frame { margin: 0; padding: .5rem; background: #fff; border-radius: 1.25rem; box-shadow: 0 0 0 1px #e4e4e7, 0 14px 28px -22px rgb(24 24 27 / .45); }
+      .symbol-frame img { display: block; width: 100%; height: auto; max-width: 100%; }
+      .symbol-emblem { display: grid; place-items: center; aspect-ratio: 956 / 1280; background: radial-gradient(circle at 50% 40%, #fff 0, #fff 45%, #fdf2f4 100%); }
+      .symbol-emblem img { width: 64%; height: auto; }
+      .symbol-label { display: inline-flex; align-items: center; gap: .5rem; }
+      .symbol-tie { display: inline-block; width: 1.5rem; height: .3rem; border-radius: 999px; background: linear-gradient(90deg, #dc2626 0 50%, #16a34a 50% 100%); }
       .media-frame { aspect-ratio: 16 / 9; }
       /* Лента: кадр любой ориентации показывается целиком на размытом фоне из того же снимка. */
       .feed-media { position: relative; height: clamp(18rem, 70vw, 34rem); overflow: hidden; background: #18181b; }
@@ -447,10 +441,10 @@
           <h3 class="mt-3 text-3xl font-extrabold tracking-[-.04em] sm:text-4xl">Знаки, за которыми стоят поступки</h3>
           <p class="mt-5 max-w-3xl leading-relaxed text-zinc-600">Символика объединяет поколения и напоминает о ценностях, которые мы разделяем. Её настоящий смысл раскрывается в дружбе, ответственности и готовности помогать — не только на торжественных встречах, но и каждый день.</p>
           <div class="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            <section class="symbol-card rounded-2xl border border-zinc-200 bg-white p-6"><figure class="symbol-visual symbol-visual--image symbol-visual--portrait mb-5"><img src="brpo-emblem.webp" width="400" height="400" alt="Эмблема БРПО: разноцветное пламя над буквами «БРПО»" loading="lazy" decoding="async" /></figure><span class="text-[11px] font-bold tracking-widest text-zinc-500">01 / ОБЩИЙ ОГОНЬ</span><h4 class="mt-4 text-xl font-bold">Эмблема БРПО</h4><p class="mt-3 text-sm leading-relaxed text-zinc-600">Эмблема Белорусской республиканской пионерской организации — разноцветное пламя над буквами «БРПО». Её можно увидеть на удостоверениях, афишах и в логотипе нашей дружины. Разные цвета складываются в один огонь — как разные таланты в одну команду.</p></section>
-            <section class="symbol-card rounded-2xl border border-red-100 bg-red-50/50 p-6"><figure class="symbol-photo mb-5"><img src="symbol-galstuk.jpg" width="956" height="1280" alt="Пионер в бело-синей рубашке с красно-зелёным пионерским галстуком" loading="lazy" decoding="async" /></figure><span class="text-[11px] font-bold tracking-widest text-red-700">02 / ЕДИНСТВО</span><h4 class="mt-4 text-xl font-bold">Пионерский галстук</h4><p class="mt-3 text-sm leading-relaxed text-zinc-600">Галстук — знак принадлежности к пионерской команде. Он напоминает о связи поколений, верности общему делу и ответственности за свои поступки. Надевая его, важно помнить не только о традиции, но и о готовности поддержать товарища.</p></section>
-            <section class="symbol-card rounded-2xl border border-zinc-200 bg-zinc-50 p-6"><figure class="symbol-photo mb-5"><img src="symbol-znachok.jpg" width="955" height="1280" alt="Пионер со значком в виде звезды на рубашке" loading="lazy" decoding="async" /></figure><span class="text-[11px] font-bold tracking-widest text-zinc-500">03 / ПРИЧАСТНОСТЬ</span><h4 class="mt-4 text-xl font-bold">Пионерский значок</h4><p class="mt-3 text-sm leading-relaxed text-zinc-600">Значок делает нашу принадлежность к организации видимой. За этим небольшим знаком — общие ценности, добрые дела и уважение к дружине. Это напоминание: репутацию команды создаёт каждый из нас.</p></section>
-            <section class="symbol-card rounded-2xl border border-zinc-200 bg-zinc-50 p-6"><figure class="symbol-photo mb-5"><img src="symbol-salyut.jpg" width="955" height="1280" alt="Пионер в красно-зелёном галстуке отдаёт пионерский салют" loading="lazy" decoding="async" /></figure><span class="text-[11px] font-bold tracking-widest text-zinc-500">04 / УВАЖЕНИЕ</span><h4 class="mt-4 text-xl font-bold">Пионерский салют</h4><p class="mt-3 text-sm leading-relaxed text-zinc-600">Салют — традиционный жест приветствия и уважения. Поднятая над головой ладонь напоминает, что общие интересы важны наряду с личными. Это знак готовности действовать вместе и бережно относиться к пионерским традициям.</p></section>
+            <section class="symbol-card symbol-card--art rounded-3xl border border-zinc-200/80 p-4 sm:p-5"><figure class="symbol-frame mb-5"><span class="symbol-emblem"><img src="brpo-emblem.webp" width="400" height="400" alt="Эмблема БРПО: разноцветное пламя над буквами «БРПО»" loading="lazy" decoding="async" /></span></figure><span class="symbol-label text-[11px] font-bold tracking-widest text-red-700"><span class="symbol-tie" aria-hidden="true"></span>01 / ОБЩИЙ ОГОНЬ</span><h4 class="mt-4 text-xl font-bold">Эмблема БРПО</h4><p class="mt-3 text-sm leading-relaxed text-zinc-600">Эмблема Белорусской республиканской пионерской организации — разноцветное пламя над буквами «БРПО». Её можно увидеть на удостоверениях, афишах и в логотипе нашей дружины. Разные цвета складываются в один огонь — как разные таланты в одну команду.</p></section>
+            <section class="symbol-card symbol-card--art rounded-3xl border border-zinc-200/80 p-4 sm:p-5"><figure class="symbol-frame mb-5"><img src="symbol-galstuk.jpg" width="956" height="1280" alt="Пионер в бело-синей рубашке с красно-зелёным пионерским галстуком" loading="lazy" decoding="async" /></figure><span class="symbol-label text-[11px] font-bold tracking-widest text-red-700"><span class="symbol-tie" aria-hidden="true"></span>02 / ЕДИНСТВО</span><h4 class="mt-4 text-xl font-bold">Пионерский галстук</h4><p class="mt-3 text-sm leading-relaxed text-zinc-600">Галстук — знак принадлежности к пионерской команде. Он напоминает о связи поколений, верности общему делу и ответственности за свои поступки. Надевая его, важно помнить не только о традиции, но и о готовности поддержать товарища.</p></section>
+            <section class="symbol-card symbol-card--art rounded-3xl border border-zinc-200/80 p-4 sm:p-5"><figure class="symbol-frame mb-5"><img src="symbol-znachok.jpg" width="955" height="1280" alt="Пионер со значком в виде звезды на рубашке" loading="lazy" decoding="async" /></figure><span class="symbol-label text-[11px] font-bold tracking-widest text-red-700"><span class="symbol-tie" aria-hidden="true"></span>03 / ПРИЧАСТНОСТЬ</span><h4 class="mt-4 text-xl font-bold">Пионерский значок</h4><p class="mt-3 text-sm leading-relaxed text-zinc-600">Значок делает нашу принадлежность к организации видимой. За этим небольшим знаком — общие ценности, добрые дела и уважение к дружине. Это напоминание: репутацию команды создаёт каждый из нас.</p></section>
+            <section class="symbol-card symbol-card--art rounded-3xl border border-zinc-200/80 p-4 sm:p-5"><figure class="symbol-frame mb-5"><img src="symbol-salyut.jpg" width="955" height="1280" alt="Пионер в красно-зелёном галстуке отдаёт пионерский салют" loading="lazy" decoding="async" /></figure><span class="symbol-label text-[11px] font-bold tracking-widest text-red-700"><span class="symbol-tie" aria-hidden="true"></span>04 / УВАЖЕНИЕ</span><h4 class="mt-4 text-xl font-bold">Пионерский салют</h4><p class="mt-3 text-sm leading-relaxed text-zinc-600">Салют — традиционный жест приветствия и уважения. Поднятая над головой ладонь напоминает, что общие интересы важны наряду с личными. Это знак готовности действовать вместе и бережно относиться к пионерским традициям.</p></section>
           </div>
         </article>
         <!-- ===== 06. НАШИ ПРОЕКТЫ — «Проекты сезона» ===== -->
