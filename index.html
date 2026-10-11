@@ -71,7 +71,7 @@
         max-height: min(82vh, 60rem);
         max-width: min(92vw, 90rem);
         object-fit: contain;
-        border-radius: 1rem;
+        border-radius: 0; /* фото показываются без скруглений — углы не обрезаются */
         box-shadow: 0 24px 80px rgb(0 0 0 / .4);
       }
       .lightbox__close, .lightbox__nav {
@@ -154,11 +154,15 @@
       .symbol-label { display: inline-flex; align-items: center; gap: .5rem; }
       .symbol-tie { display: inline-block; width: 1.5rem; height: .3rem; border-radius: 999px; background: linear-gradient(90deg, #dc2626 0 50%, #16a34a 50% 100%); }
       .media-frame { aspect-ratio: 16 / 9; }
-      /* Лента: кадр любой ориентации показывается целиком на размытом фоне из того же снимка. */
-      .feed-media { position: relative; height: clamp(18rem, 70vw, 34rem); overflow: hidden; background: #18181b; }
-      .feed-media__backdrop { position: absolute; inset: -2rem; width: calc(100% + 4rem); height: calc(100% + 4rem); max-width: none; object-fit: cover; filter: blur(28px) saturate(1.1); opacity: .55; }
-      .feed-media > .gallery-photo { position: relative; }
-      .feed-media > video { position: relative; display: block; height: 100%; width: auto; max-width: 100%; margin: 0 auto; aspect-ratio: 9 / 16; background: #000; object-fit: contain; }
+      /* Лента: masonry-сетка; фото и видео целиком, в исходных пропорциях — без обрезки, фильтров, скруглений и повторов. */
+      .feed-grid { display: flex; align-items: flex-start; gap: 1.25rem; }
+      .feed-column { display: flex; flex: 1 1 0; min-width: 0; flex-direction: column; gap: 1.25rem; }
+      .feed-card { transition: transform .2s ease, box-shadow .2s ease; }
+      .feed-card:hover, .feed-card:focus-within { transform: translateY(-2px); box-shadow: 0 22px 40px -26px rgb(24 24 27 / .35); }
+      .feed-media { background: #f4f4f5; }
+      .feed-media img, .feed-media video { display: block; width: 100%; height: auto; max-width: 100%; }
+      .feed-media video { background: #000; }
+      .feed-media .gallery-photo:hover { transform: none; filter: none; }
       .hero-logo { aspect-ratio: 1; height: auto; }
       html { scrollbar-gutter: stable; }
       .gallery-photo { border: 0; padding: 0; background: transparent; }
@@ -170,7 +174,7 @@
       #contact dd { overflow-wrap: anywhere; }
       @media (max-width: 640px) {
         .lightbox { padding: .75rem; }
-        .lightbox__image { max-width: 88vw; max-height: 65dvh; border-radius: .75rem; }
+        .lightbox__image { max-width: 88vw; max-height: 65dvh; }
         .lightbox__nav { width: 2.5rem; height: 2.5rem; }
         .lightbox__nav--prev { left: .5rem; }
         .lightbox__nav--next { right: .5rem; }
@@ -212,31 +216,8 @@
       .event-card:hover, .event-card:focus-within { transform: translateY(-2px); box-shadow: 0 24px 50px -30px rgb(24 24 27 / .4); }
       .doc-card:hover, .doc-card:focus-visible { transform: translateY(-3px); border-color: #d4d4d8; box-shadow: 0 16px 30px -20px rgb(24 24 27 / .35); }
 
-      /* Instagram feed */
+      /* Instagram account card */
       .ig-ring { background: linear-gradient(45deg, #f59e0b, #dc2626 55%, #be185d); }
-      .ig-tile img { transition: transform .5s cubic-bezier(.16, 1, .3, 1); }
-      .ig-tile:hover img, .ig-tile:focus-visible img { transform: scale(1.05); }
-      .ig-tile:focus-visible { outline-offset: 2px; }
-      .ig-tile__overlay {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: flex-end;
-        padding: .75rem;
-        background: linear-gradient(to top, rgb(9 9 11 / .78), rgb(9 9 11 / 0) 65%);
-        color: #fff;
-        opacity: 0;
-        transition: opacity .25s ease;
-      }
-      .ig-tile:hover .ig-tile__overlay, .ig-tile:focus-visible .ig-tile__overlay { opacity: 1; }
-      .ig-tile__type {
-        position: absolute;
-        top: .5rem;
-        right: .5rem;
-        color: #fff;
-        filter: drop-shadow(0 1px 2px rgb(0 0 0 / .5));
-      }
-      .ig-tile__type svg { width: 1.1rem; height: 1.1rem; }
 
       /* Quiz */
       .quiz-step { animation: panel-in .35s cubic-bezier(.16, 1, .3, 1); }
@@ -396,15 +377,15 @@
         </div>
 
         <div id="panel-news" class="tab-panel mt-2" role="tabpanel" aria-labelledby="tab-news" tabindex="0">
-          <div class="mx-auto max-w-3xl">
+          <div>
             <div class="mb-6 flex flex-wrap items-center justify-between gap-3 px-1">
               <div><h3 class="text-xl font-bold tracking-tight">Лента добрых дел</h3><p class="mt-1 text-sm text-zinc-600">Фотографии, события и истории нашей дружины — в одном живом потоке.</p></div>
               
             </div>
 
             <!-- Посты ленты задаются в JS (массив FEED_POSTS в начале скрипта внизу страницы).
-                 Каждый пост — отдельная карточка: своё фото или видео, заголовок и описание именно этого события. -->
-            <ol class="relative space-y-5 before:absolute before:bottom-8 before:left-[1.05rem] before:top-8 before:w-px before:bg-zinc-200 sm:before:left-[1.2rem]" aria-label="Публикации дружины" data-feed></ol>
+                 Каждый пост — отдельная карточка; фото и видео показываются целиком, в исходных пропорциях, каждый файл один раз. -->
+            <div class="feed-grid" aria-label="Публикации дружины" data-feed></div>
           </div>
         </div>
         <article id="panel-octobrists" class="tab-panel mt-2 overflow-hidden rounded-3xl border border-white bg-white shadow-float" role="tabpanel" aria-labelledby="tab-octobrists" tabindex="0" hidden>
@@ -789,20 +770,18 @@
         <p class="mt-6 text-xs leading-relaxed text-zinc-500">Шаблоны носят справочный характер. Актуальные формы документов уточняйте у старшего вожатого.</p>
       </section>
 
-      <!-- ===== INSTAGRAM / TIKTOK =====
-           Чтобы обновить ленту: в каждой плитке замените href (ссылка на пост), src и alt картинки и подпись.
-           Значок в углу (.ig-tile__type): квадраты — карусель, треугольник — видео; для одиночного фото удалите его. -->
+      <!-- ===== INSTAGRAM / TIKTOK — ссылки на аккаунты (фото дружины показываются только в ленте, без повторов) ===== -->
       <section id="social" class="reveal mb-8 scroll-mt-4 overflow-hidden rounded-3xl border border-white bg-white shadow-float" aria-labelledby="social-title">
-        <div class="grid lg:grid-cols-[.8fr_1.2fr]">
-          <div class="flex flex-col gap-6 p-7 sm:p-10">
+        <div class="grid items-center gap-6 p-7 sm:p-10 lg:grid-cols-2 lg:gap-10">
             <div>
               <p class="text-[11px] font-bold uppercase tracking-widest text-red-700">Мы в соцсетях</p>
               <h2 id="social-title" class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Добрые дела — каждый день в ленте</h2>
               <p class="mt-4 text-sm leading-relaxed text-zinc-600">Фотоотчёты, анонсы и закулисье дружины. Подписывайтесь, чтобы ничего не пропустить.</p>
             </div>
+            <div class="flex flex-col gap-4">
             <div class="rounded-2xl border border-zinc-100 bg-zinc-50 p-5">
               <div class="flex items-center gap-4">
-                <span class="ig-ring shrink-0 rounded-full p-[3px]"><img src="logo.jpg" alt="" width="56" height="56" class="h-14 w-14 rounded-full border-2 border-white bg-white object-cover" loading="lazy" decoding="async" /></span>
+                <span class="ig-ring shrink-0 rounded-full p-[3px]" aria-hidden="true"><span class="grid h-14 w-14 place-items-center rounded-full border-2 border-white bg-white text-zinc-950"><svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></span></span>
                 <div class="min-w-0"><p class="truncate font-bold">school_212_minsk</p><p class="text-xs text-zinc-500">Средняя школа №212 · Минск</p></div>
               </div>
               <a href="https://instagram.com/school_212_minsk?vrfl=dXI2bmY0Mnl5ZGZ1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" class="mt-5 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-zinc-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-zinc-700"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>Подписаться в Instagram<span class="sr-only">(откроется в новой вкладке)</span></a>
@@ -812,17 +791,6 @@
               <span class="min-w-0 flex-1"><span class="block font-bold">TikTok @school212minsk</span><span class="block text-sm text-zinc-300">Короткие видео из жизни школы</span></span>
               <span class="text-xl transition group-hover:translate-x-1" aria-hidden="true">↗</span><span class="sr-only">(откроется в новой вкладке)</span>
             </a>
-          </div>
-
-          <div class="bg-zinc-50 p-2 sm:p-4 lg:p-6">
-            <ul class="grid grid-cols-3 gap-1 sm:gap-2" aria-label="Публикации в Instagram">
-              <li><a href="https://instagram.com/school_212_minsk?vrfl=dXI2bmY0Mnl5ZGZ1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" class="ig-tile relative block aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 sm:rounded-xl"><img src="photo-2.jpg" alt="Участники дружины на осеннем событии" width="959" height="1280" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="ig-tile__type" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="3" width="14" height="14" rx="3"/><path d="M5 7v10a2 2 0 0 0 2 2h10v2H7a4 4 0 0 1-4-4V7Z"/></svg></span><span class="ig-tile__overlay" aria-hidden="true"><span class="line-clamp-3 text-xs font-medium leading-snug">Осенний сбор дружины: планы, идеи и новые лица</span></span><span class="sr-only">— открыть в Instagram (новая вкладка)</span></a></li>
-              <li><a href="https://instagram.com/school_212_minsk?vrfl=dXI2bmY0Mnl5ZGZ1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" class="ig-tile relative block aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 sm:rounded-xl"><img src="photo-3.jpg" alt="Командная работа над проектом" width="960" height="1280" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="ig-tile__type" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10.5-6.5Z"/></svg></span><span class="ig-tile__overlay" aria-hidden="true"><span class="line-clamp-3 text-xs font-medium leading-snug">Как рождается проект: 60 секунд из штаба</span></span><span class="sr-only">— открыть в Instagram (новая вкладка)</span></a></li>
-              <li><a href="https://instagram.com/school_212_minsk?vrfl=dXI2bmY0Mnl5ZGZ1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" class="ig-tile relative block aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 sm:rounded-xl"><img src="photo-4.jpg" alt="Пионеры на волонтёрской акции" width="960" height="1280" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="ig-tile__overlay" aria-hidden="true"><span class="line-clamp-3 text-xs font-medium leading-snug">Маленькие дела, которые складываются в большие</span></span><span class="sr-only">— открыть в Instagram (новая вкладка)</span></a></li>
-              <li><a href="https://instagram.com/school_212_minsk?vrfl=dXI2bmY0Mnl5ZGZ1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" class="ig-tile relative block aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 sm:rounded-xl"><img src="photo-8.jpg" alt="Творческий момент команды" width="960" height="1280" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="ig-tile__type" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="3" width="14" height="14" rx="3"/><path d="M5 7v10a2 2 0 0 0 2 2h10v2H7a4 4 0 0 1-4-4V7Z"/></svg></span><span class="ig-tile__overlay" aria-hidden="true"><span class="line-clamp-3 text-xs font-medium leading-snug">Мастерская открыток: готовимся к акции для ветеранов</span></span><span class="sr-only">— открыть в Instagram (новая вкладка)</span></a></li>
-              <li><a href="https://instagram.com/school_212_minsk?vrfl=dXI2bmY0Mnl5ZGZ1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" class="ig-tile relative block aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 sm:rounded-xl"><img src="photo-5.jpg" alt="Финал школьного события" width="960" height="1280" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="ig-tile__overlay" aria-hidden="true"><span class="line-clamp-3 text-xs font-medium leading-snug">Финал недели добрых дел — спасибо каждому!</span></span><span class="sr-only">— открыть в Instagram (новая вкладка)</span></a></li>
-              <li><a href="https://instagram.com/school_212_minsk?vrfl=dXI2bmY0Mnl5ZGZ1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" class="ig-tile relative block aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 sm:rounded-xl"><img src="photo-main.jpg" alt="Пионерская дружина в полном составе" width="960" height="1280" class="h-full w-full object-cover" loading="lazy" decoding="async" /><span class="ig-tile__type" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10.5-6.5Z"/></svg></span><span class="ig-tile__overlay" aria-hidden="true"><span class="line-clamp-3 text-xs font-medium leading-snug">Одна дружина — много возможностей</span></span><span class="sr-only">— открыть в Instagram (новая вкладка)</span></a></li>
-            </ul>
           </div>
         </div>
       </section>
@@ -870,12 +838,38 @@
       (() => {
         // ---------- Лента добрых дел: каждый пост — отдельная карточка ----------
         // Чтобы добавить пост, допишите объект в НАЧАЛО массива (сверху — самые свежие). Поля:
-        //   type   — 'photo' или 'video';      src — файл фото или видео;   poster — обложка видео;
-        //   width / height — размеры исходного файла в пикселях (чтобы страница не «прыгала» при загрузке);
+        //   type   — 'photo' или 'video';      src — файл фото или видео;
+        //   width / height — размеры исходного файла в пикселях (по ним сохраняются пропорции);
         //   alt    — что изображено на кадре (для незрячих и подписи в просмотрщике);
-        //   tag    — рубрика;   title — заголовок поста;   text — описание ИМЕННО этого события;
+        //   tag    — рубрика;   title — необязательный заголовок;   text — текст публикации;
         //   date   — необязательная дата публикации в формате 'ГГГГ-ММ-ДД'.
+        // Фото и видео выводятся как есть: целиком, в исходных пропорциях, без обрезки и фильтров, каждый файл — один раз.
         const FEED_POSTS = [
+          {
+            type: 'photo', src: 'feed/2026-10-10-oktyabryatskiy-kviz.jpg', width: 955, height: 1280, date: '2026-10-10', tag: 'Октябрята',
+            alt: 'Коллаж «Октябрятский квиз: зажигаем искры дружбы»: октябрята третьих классов на игре в актовом зале',
+            text: 'Для октябрят пионерской дружины имени В.Е. Лобанка из 3-х классов прошла игра «Октябрятский квиз: Зажигаем искры дружбы»',
+          },
+          {
+            type: 'photo', src: 'feed/2026-10-10-svoya-igra.jpg', width: 955, height: 1280, date: '2026-10-10', tag: 'Пионеры',
+            alt: 'Коллаж «Своя игра. Беларусь: История и Традиции»: пионеры седьмых классов на интеллектуальной игре',
+            text: 'Для пионеров пионерской дружины имени В.Е. Лобанка из 7-х классов была проведена интеллектуальная игра «Своя игра. Беларусь: История и Традиции».',
+          },
+          {
+            type: 'photo', src: 'feed/2026-10-09-shefskaya-vertikal.jpg', width: 896, height: 1200, date: '2026-10-09', tag: 'Шефская вертикаль',
+            alt: 'Коллаж «Шефская вертикаль: старшие учат — младшие растут!»: активисты дружины на встречах с младшими школьниками',
+            text: 'В рамках программы «Шефская вертикаль» активисты пионерской дружины имени В.Е. Лобанка провели для младших школьников встречи «Кто такой октябрёнок?». Цель — познакомить ребят с правилами и традициями октябрят и заинтересовать вступлением в БРПО.',
+          },
+          {
+            type: 'photo', src: 'feed/2026-09-13-den-rozhdeniya-brpo.jpg', width: 1024, height: 1280, date: '2026-09-13', tag: 'Праздник',
+            alt: 'Открытка «С днём рождения!»: пионеры школы №212 поздравляют Белорусскую республиканскую пионерскую организацию',
+            text: 'Пионерская дружина имени В.Е.Лобанка ГУО «Средняя школа №212 г. Минска» поздравляет БРПО с Днем рождения!',
+          },
+          {
+            type: 'video', src: 'feed/2026-09-13-den-rozhdeniya-brpo.mp4', width: 1280, height: 720, date: '2026-09-13', tag: 'Видео',
+            alt: 'Видео: поздравление БРПО с днём рождения',
+            text: 'С днём рождения, БРПО!',
+          },
           {
             type: 'photo', src: 'photo-main.jpg', width: 960, height: 1280, tag: 'Октябрята',
             alt: 'Коллаж «Октябрятский квест 2026»: команды октябрят выполняют задания в классах и спортзале',
@@ -883,7 +877,7 @@
             text: 'Испытание Белорусской республиканской пионерской организации для самых младших. Команды октябрят проходили станции в классах, спортзале и у интерактивной доски — и каждое задание решали только сообща.',
           },
           {
-            type: 'video', src: 'video-main.mp4', poster: 'video-main-poster.jpg', width: 720, height: 1280, tag: 'Видео',
+            type: 'video', src: 'video-main.mp4', width: 720, height: 1280, tag: 'Видео',
             alt: 'Видео: торжественное принятие учащихся вторых классов в октябрята',
             title: 'Второклассники стали октябрятами',
             text: 'Торжественное принятие учащихся вторых классов в октябрята. Ребята произнесли торжественное обещание, а каждый октябрёнок получил «Удостоверение октябрёнка» и октябрятскую звёздочку.',
@@ -907,7 +901,7 @@
             text: 'Самый трепетный момент церемонии: педагог подходит к каждому участнику и сам прикрепляет значок. Небольшой знак, который напоминает, что ты теперь часть общей команды.',
           },
           {
-            type: 'video', src: 'video-1.mp4', poster: 'video-1-poster.jpg', width: 464, height: 848, tag: 'Видео',
+            type: 'video', src: 'video-1.mp4', width: 464, height: 848, tag: 'Видео',
             alt: 'Видео с городского праздника «Маленькие звёздочки нашей столицы»',
             title: '«Маленькие звёздочки нашей столицы»',
             text: 'Наши октябрята побывали на городском празднике для октябрят столицы: большая сцена, музыка и сотни ребят из разных школ Минска в одном зале.',
@@ -945,33 +939,66 @@
         ];
 
         const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
-        const feedDateFormat = new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+        const feedDateFormat = new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Minsk' });
         const feedList = document.querySelector('[data-feed]');
 
         function renderFeedMedia(post) {
           const alt = escapeHtml(post.alt);
           if (post.type === 'video') {
-            return `<div class="feed-media"><img class="feed-media__backdrop" src="${escapeHtml(post.poster)}" alt="" aria-hidden="true" loading="lazy" decoding="async" />`
-              + `<video controls preload="none" playsinline poster="${escapeHtml(post.poster)}" width="${post.width}" height="${post.height}" aria-label="${alt}"><source src="${escapeHtml(post.src)}" type="video/mp4" />Ваш браузер не поддерживает воспроизведение видео.</video></div>`;
+            // #t=0.1 — браузер сам показывает первый кадр ролика как обложку; файл грузится по нажатию «Play».
+            return `<div class="feed-media"><video controls preload="metadata" playsinline width="${post.width}" height="${post.height}" aria-label="${alt}"><source src="${escapeHtml(post.src)}#t=0.1" type="video/mp4" />Ваш браузер не поддерживает воспроизведение видео.</video></div>`;
           }
-          return `<div class="feed-media"><img class="feed-media__backdrop" src="${escapeHtml(post.src)}" alt="" aria-hidden="true" loading="lazy" decoding="async" />`
-            + `<button type="button" class="gallery-photo block h-full w-full" aria-label="Открыть фотографию: ${alt}" aria-haspopup="dialog"><img src="${escapeHtml(post.src)}" width="${post.width}" height="${post.height}" alt="${alt}" class="h-full w-full object-contain" loading="lazy" decoding="async" /></button></div>`;
+          return `<div class="feed-media"><button type="button" class="gallery-photo block w-full" aria-label="Открыть фотографию: ${alt}" aria-haspopup="dialog"><img src="${escapeHtml(post.src)}" width="${post.width}" height="${post.height}" alt="${alt}" loading="lazy" decoding="async" /></button></div>`;
+        }
+
+        function renderFeedPost(post, index) {
+          const titleId = `feed-post-${index + 1}-title`;
+          const date = post.date ? `<time datetime="${escapeHtml(post.date)}" class="text-xs font-medium text-zinc-500">${feedDateFormat.format(new Date(`${post.date}T12:00:00+03:00`))}</time>` : '';
+          const tag = post.tag ? `<span class="rounded-full bg-red-50 px-2.5 py-1 text-[11px] font-bold text-red-700">${escapeHtml(post.tag)}</span>` : '';
+          const heading = post.title
+            ? `<h4 id="${titleId}" class="text-base font-bold leading-snug tracking-tight">${escapeHtml(post.title)}</h4><p class="mt-2 text-sm leading-relaxed text-zinc-600">${escapeHtml(post.text)}</p>`
+            : `<p id="${titleId}" class="text-sm font-medium leading-relaxed text-zinc-800">${escapeHtml(post.text)}</p>`;
+          const shareTitle = post.title || post.text;
+          return `<article class="feed-card rounded-3xl border border-white bg-white p-3 shadow-soft" aria-labelledby="${titleId}" data-feed-index="${index}">
+              <header class="flex flex-wrap items-center justify-between gap-2 px-2 pb-3 pt-1">${tag}${date}</header>
+              ${renderFeedMedia(post)}
+              <div class="px-2 pb-1 pt-4">${heading}<div class="share-row mt-4 flex justify-end border-t border-zinc-100 pt-2 text-xs font-medium"><button type="button" class="share-button px-3 py-2" data-share-title="${escapeHtml(shareTitle)}"><span aria-hidden="true">↗</span> Поделиться</button></div></div>
+            </article>`;
         }
 
         if (feedList) {
-          feedList.innerHTML = FEED_POSTS.map((post, index) => {
-            const number = String(index + 1).padStart(2, '0');
-            const titleId = `feed-post-${number}-title`;
-            const date = post.date ? `<time datetime="${escapeHtml(post.date)}" class="shrink-0 rounded-full bg-zinc-100 px-3 py-1.5 text-[11px] font-medium text-zinc-600">${feedDateFormat.format(new Date(`${post.date}T12:00:00+03:00`))}</time>` : '';
-            return `<li class="relative pl-8 sm:pl-12">
-              <span class="absolute left-0 top-7 grid h-[2.15rem] w-[2.15rem] place-items-center rounded-full border-4 border-[#f7f7f6] ${index % 2 ? 'bg-red-600' : 'bg-zinc-950'} text-[10px] font-bold text-white shadow-soft" aria-hidden="true">${number}</span>
-              <article class="overflow-hidden rounded-3xl border border-white bg-white shadow-soft" aria-labelledby="${titleId}">
-                <header class="flex flex-wrap items-center justify-between gap-3 px-5 py-4 sm:px-6"><div class="flex min-w-0 items-center gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-red-50 text-sm font-extrabold text-red-700" aria-hidden="true">212</span><div class="min-w-0"><p class="truncate text-sm font-bold">Пионерская дружина имени В.Е. Лобанка</p><p class="text-xs text-zinc-500">ГУО «Средняя школа №212 г. Минска»</p></div></div>${date}</header>
-                ${renderFeedMedia(post)}
-                <div class="p-5 sm:p-6"><h4 id="${titleId}" class="text-lg font-bold tracking-tight">${escapeHtml(post.title)}</h4><p class="mt-2 text-sm leading-relaxed text-zinc-600">${escapeHtml(post.text)}</p><div class="share-row mt-5 flex flex-wrap justify-between gap-3 border-t border-zinc-100 pt-4 text-xs font-medium"><span class="rounded-full bg-zinc-100 px-3 py-1.5 text-zinc-600">${escapeHtml(post.tag)}</span><button type="button" class="share-button px-3 py-2" data-share-title="${escapeHtml(post.title)}"><span aria-hidden="true">↗</span> Поделиться</button></div></div>
-              </article>
-            </li>`;
-          }).join('');
+          const cards = FEED_POSTS.map((post, index) => {
+            const holder = document.createElement('div');
+            holder.innerHTML = renderFeedPost(post, index);
+            const card = holder.firstElementChild;
+            // Height estimate for the masonry layout: media proportion + room for the text.
+            card.dataset.weight = String(post.height / post.width + 0.25 + Math.min(post.text.length, 600) / 900 + (post.title ? 0.08 : 0));
+            return card;
+          });
+          let columnCount = 0;
+          const layoutFeed = () => {
+            const width = feedList.clientWidth;
+            const count = width >= 960 ? 3 : width >= 600 ? 2 : 1;
+            if (count === columnCount && feedList.childElementCount) return;
+            columnCount = count;
+            const columns = Array.from({ length: count }, () => {
+              const column = document.createElement('div');
+              column.className = 'feed-column';
+              return column;
+            });
+            const heights = new Array(count).fill(0);
+            // Keep reading order: each next post goes to the currently shortest column.
+            cards.forEach((card) => {
+              const target = heights.indexOf(Math.min(...heights));
+              columns[target].append(card);
+              heights[target] += Number(card.dataset.weight);
+            });
+            feedList.replaceChildren(...columns);
+          };
+          layoutFeed();
+          // The feed may start inside a hidden tab: re-lay out whenever its width changes.
+          if ('ResizeObserver' in window) new ResizeObserver(layoutFeed).observe(feedList);
+          else window.addEventListener('resize', layoutFeed);
         }
 
         const tablist = document.querySelector('[role="tablist"]');
@@ -1076,7 +1103,9 @@
         const closeButton = lightbox.querySelector('.lightbox__close');
         const previousButton = lightbox.querySelector('.lightbox__nav--prev');
         const nextButton = lightbox.querySelector('.lightbox__nav--next');
-        const photos = [...document.querySelectorAll('.gallery-photo img')];
+        // Feed cards sit in masonry columns, so restore the publication order for prev/next in the viewer.
+        const feedOrder = (img) => Number(img.closest('[data-feed-index]')?.dataset.feedIndex ?? -1);
+        const photos = [...document.querySelectorAll('.gallery-photo img')].sort((a, b) => feedOrder(a) - feedOrder(b));
         const page = document.querySelector('main');
         const fab = document.getElementById('fab');
         const modalButtons = [...lightbox.querySelectorAll('button')];
